@@ -1,5 +1,6 @@
 package com.example.aftas.VM.request;
 
+import com.example.aftas.Validation.StrongPassword;
 import com.example.aftas.enums.Role;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
