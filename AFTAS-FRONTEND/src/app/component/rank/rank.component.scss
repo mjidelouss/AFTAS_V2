@@ -1,0 +1,65 @@
+.boody {
+    display: flex;
+    align-items: flex-end;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+
+.podium {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    margin: auto;
+    transform: scaleY(-1);
+}
+
+.podium-level-3,
+.podium-level-2,
+.podium-level-1 {
+    position: relative;
+    width: 30%;
+    border-radius: 10px;
+    overflow: hidden;
+    transform: scaleY(-1);
+}
+
+.podium-level-3 {
+    height: 200px;
+    background-color: #41aa11;
+}
+
+.podium-level-2 {
+    height: 400px;
+    background-color: #3498db;
+}
+
+.podium-level-1 {
+    height: 600px;
+    background-color: rgb(208, 39, 39);
+}
+
+.winner {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #fff;
+    font-size: 1.5em;
+}
+
+.animate {
+    animation: bounce 1s ease-in-out infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-30px);
+    }
+    60% {
+        transform: translateY(-15px);
+    }
+}

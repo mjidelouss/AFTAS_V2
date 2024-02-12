@@ -1,0 +1,60 @@
+<div class="container mt-5">
+  <div class="">
+    <h2 class="mb-4"></h2>
+  </div>
+  <div class="card border border-4 border-secondary shadow">
+    <div class="card-body fadeInAnimation">
+
+      <!-- Your Form -->
+      <div class="body mt-2">
+        <form (ngSubmit)="addHunt(huntForm.value)" #huntForm="ngForm" method="post">
+          <div class="d-flex justify-content-center align-items-center mb-2">
+            <img class="rounded-circle shadow" src="../../../assets/images/hunt.jpg" width="220" height="200" alt="">
+          </div>
+          <div class="row">
+            <!-- First Column -->
+            <div class="col-md-6 mb-3">
+              <label for="fishName" class="form-label">Fish Name:</label>
+              <input type="text" class="form-control border border-dark border-2" id="fishName" name="fishName" ngModel
+                required>
+            </div>
+
+            <!-- Second Column -->
+            <div class="col-md-6 mb-3">
+              <label for="competitionCode" class="form-label">Competition Code:</label>
+              <input type="text" class="form-control border border-dark border-2" id="competitionCode"
+                name="competitionCode" ngModel required>
+            </div>
+          </div>
+
+          <div class="row">
+            <!-- First Column -->
+            <div class="col-md-6 mb-3">
+              <label for="huntWeight" class="form-label">Hunt Weight:</label>
+              <input type="number" step="0.01" class="form-control border border-dark border-2" id="huntWeight"
+                name="huntWeight" ngModel required>
+            </div>
+
+            <!-- Second Column -->
+            <div class="col-md-6 mb-3">
+              <label for="numberOfFish" class="form-label">Number of Fish:</label>
+              <input type="number" class="form-control border border-dark border-2" id="numberOfFish"
+                name="numberOfFish" ngModel required>
+            </div>
+          </div>
+
+          <div class="row" style="width: 35.4vw;">
+            <!-- Single Column -->
+            <div class="col-md-12 mb-3">
+              <label for="membershipNumber" class="form-label">Membership Number:</label>
+              <input type="number" class="form-control border border-dark border-2" id="membershipNumber"
+                name="membershipNumber" ngModel required>
+            </div>
+          </div>
+
+          <button class="btn btn-primary" type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

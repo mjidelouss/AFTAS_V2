@@ -1,0 +1,38 @@
+<div class="d-flex justify-content-between">
+  <h2 class="font-medium mb-3">Fish List</h2>
+  <div class="ms-4"><button class="btn btn-warning fs-4 p-2" (click)="goToAddFish()">Add Fish</button></div>
+</div>
+<!-- Row -->
+<div class="row">
+  <!-- column -->
+  <div class="col-lg-3 col-md-6" *ngFor='let fish of fishes'>
+    <!-- Card -->
+    <!-- --------------------- start Card title ---------------- -->
+    <div class="card border border-4 border-secondary">
+      <img class="card-img-top img-responsive"  [src]="fish.imageUrl" height="250" alt="" />
+      <div class="card-body">
+        <h4 class="card-title fw-bold" style="color: hsl(19, 82%, 50%)">{{ fish.name }}</h4>
+        <div class="card-text">
+          <div class="sidebar-heading fs-6"><i class=""></i>Average Weight:
+            <span class="" style="color: hsl(206, 73%, 53%)">{{ fish.averageWeight }} KG</span>
+          </div>
+          <div class="sidebar-heading fs-6"><i class=""></i>Level:
+            <span class="" style="color: hsl(206, 73%, 53%)">{{ fish.level.level }}</span>
+          </div>
+          <!-- Delete and Edit Icons -->
+        <div class="mt-3 d-flex justify-content-between">
+            <button class="me-3 rounded-circle shadow border-white p-2"(click)="deleteFish(fish.id)">
+            <i class="text-danger bi bi-trash fs-6"></i>
+          </button>
+          <button class="rounded-circle shadow border-white p-2">
+            <i class="text-success bi bi-pencil fs-6"></i>
+          </button>
+        </div>
+        </div>
+      </div>
+    </div>
+    <!-- --------------------- end Card title ---------------- -->
+    <!-- Card -->
+  </div>
+  <!-- column -->
+</div>

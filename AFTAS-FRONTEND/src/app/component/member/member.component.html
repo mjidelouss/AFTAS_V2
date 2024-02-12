@@ -1,0 +1,72 @@
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex justify-content-between">
+          <div>
+              <h4 class="card-title">Members</h4>
+              <h5 class="card-subtitle text-muted">Overview of the Members</h5>
+          </div>
+          <div class="mt-1"><button class="btn btn-primary" (click)="goToAddMember()">Add Member</button></div>
+      </div>
+      <div class="container mt-4">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="input-group">
+                    <input type="text" [(ngModel)]="searchTerm" class="form-control" placeholder="Search..." aria-label="Search"
+                           aria-describedby="search-addon">
+                    <div class="input-group-append ms-1">
+                        <button class="btn btn-outline-secondary" (click)="searchMembers()" type="button" id="search-addon">Search</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="table-responsive">
+          <table class="table align-middle text-nowrap" id="membertables">
+              <thead>
+                  <tr>
+                      <th class="text-dark font-medium fs-4">Member</th>
+                      <th class="text-dark font-medium fs-4">Membership Number</th>
+                      <th class="text-dark font-medium fs-4">Nationality</th>
+                      <th class="text-dark font-medium fs-4">Identity Number</th>
+                      <th class="text-dark font-medium fs-4">Identity Document Type</th>
+                      <th class="text-dark font-medium fs-4">Action</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor='let member of members'>
+                      <td>
+                          <div class="d-flex align-items-center">
+                              <img src="../../../assets/images/users/user2.jpg" alt="user" width="45" class="rounded-circle">
+                              <div class="ms-3">
+                                  <h5 class="mb-0 font-medium">{{ member.name }}</h5>
+                                  <span class="text-muted">{{ member.familyName }}</span>
+                              </div>
+                          </div>
+                      </td>
+                      <td class="fs-4">{{ member.membershipNumber }}</td>
+                      <td>
+                        <h5 class="fs-4">{{ member.nationality }}</h5>
+                      </td>
+                      
+                      <td>
+                          <h5 class="mb-0 fw-normal">{{ member.identityNumber }}</h5>
+                      </td>
+                      <td>
+                          <h5 class="mb-0 fw-normal">{{ member.identityDocumentType }}</h5>
+                      </td>
+                      <td class="">
+                        <button type="submit" class="btn btn-info opacity-75" (click)="viewMember(member)">View</button>
+                        <button type="submit" class="btn btn-success ms-1" (click)="editMember(member)">Edit</button>
+                        <button type="submit" class="btn btn-danger ms-1" (click)="deleteMember(member.id)">Delete</button>
+                    </td>
+                  </tr>              
+              </tbody>
+          </table>
+      </div>
+      </div>
+    </div>
+
+  </div>
+</div>

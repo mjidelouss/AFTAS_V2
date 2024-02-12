@@ -1,0 +1,73 @@
+<div class="container mt-5">
+    <div class="d-flex justify-content-between">
+        <h2 class="mb-4">Edit Competition</h2>
+        <button class="btn mb-1 btn-primary fw-bold" routerLink="/competition">BACK</button>
+    </div>
+
+    <div class="card border border-4 border-secondary shadow">
+        <div class="card-body fadeInAnimation">
+      
+          <!-- Your Form -->
+<div class="body mt-2">
+  <form (ngSubmit)="updateCompetition()" method="post">
+    <div class="row">
+      <!-- First Column -->
+      <div class="col-md-6 mb-3">
+        <label for="code" class="form-label">Code:</label>
+        <input type="text" class="form-control border border-dark border-2" id="code" name="code" required [(ngModel)]="competition.code">
+      </div>
+
+      <!-- Second Column -->
+      <div class="col-md-6 mb-3">
+        <label for="date" class="form-label">Date:</label>
+        <input type="text" class="form-control border border-dark border-2" id="date" name="date" required [(ngModel)]="competition.date">
+      </div>
+    </div>
+
+    <!-- Repeat the same structure for other pairs of inputs -->
+
+    <div class="row">
+      <!-- Third Column -->
+      <div class="col-md-6 mb-3">
+        <label for="startTime" class="form-label">Start Time:</label>
+        <input type="text" class="form-control border border-dark border-2" id="startTime" name="startTime" required [(ngModel)]="competition.startTime">
+      </div>
+
+      <!-- Fourth Column -->
+      <div class="col-md-6 mb-3">
+        <label for="endTime" class="form-label">End Time:</label>
+        <input type="text" class="form-control border border-dark border-2" id="endTime" name="endTime" required [(ngModel)]="competition.endTime">
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- Total Participants -->
+      <div class="col-md-6 mb-3">
+        <label for="totalParticipants" class="form-label">Total Participants:</label>
+        <input type="text" class="form-control border border-dark border-2" id="totalParticipants" name="totalParticipants" required [(ngModel)]="competition.totalParticipants">
+      </div>
+
+      <!-- Location -->
+      <div class="col-md-6 mb-3">
+        <label for="location" class="form-label">Location:</label>
+        <input type="text" class="form-control border border-dark border-2" id="location" name="location" required [(ngModel)]="competition.location">
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- Amount -->
+      <div class="col-md-6 mb-3">
+        <label for="amount" class="form-label">Amount:</label>
+        <input type="text" class="form-control border border-dark border-2" id="amount" name="amount" required [(ngModel)]="competition.amount">
+      </div>
+    </div>
+
+    <button class="btn btn-success" type="submit">Update</button>
+  </form>
+</div>
+
+      
+        </div>
+      </div>
+      
+</div>

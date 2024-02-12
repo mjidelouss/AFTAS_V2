@@ -1,0 +1,43 @@
+<div class="container mt-5">
+    <div class="d-flex justify-content-between">
+        <h2 class="mb-4">Add Level</h2>
+        <button class="btn mb-1 btn-primary fw-bold" routerLink="/level">BACK</button>
+    </div>
+
+    <div class="card border border-4 border-secondary shadow">
+        <div class="card-body fadeInAnimation">
+      
+          <!-- Your Form -->
+          <div class="body mt-2">
+            <form (ngSubmit)="addLevel(levelForm.value)" #levelForm="ngForm" method="post">
+              <div class="row">
+                <!-- First Column -->
+                <div class="col-md-6 mb-3">
+                  <label for="level" class="form-label">Level:</label>
+                  <input type="number" class="form-control border border-dark border-2" id="level" name="level" ngModel required>
+                </div>
+      
+                <!-- Third Column -->
+                <div class="col-md-6 mb-3">
+                  <label for="points" class="form-label">Points:</label>
+                  <input type="number" class="form-control border border-dark border-2" id="points" name="points" ngModel required>
+                </div>          
+
+              <div class="row">
+                <!-- Second Column -->
+                <div class="col-md-6 mb-3">
+                    <label for="description" class="form-label">Description:</label>
+                    <textarea type="text" class="form-control border border-dark border-2" id="description" name="description" style="height: 8VW;" ngModel required></textarea>
+                  </div>
+                </div>
+
+    
+            </div>
+              <button class="btn btn-primary" type="submit">Save</button>
+            </form>
+          </div>
+      
+        </div>
+      </div>
+      
+</div>

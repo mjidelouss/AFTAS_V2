@@ -1,0 +1,61 @@
+<div class="container mt-5">
+    <div class="d-flex justify-content-between">
+        <h2 class="mb-4">Edit Member</h2>
+        <button class="btn mb-1 btn-primary fw-bold" routerLink="/member">BACK</button>
+    </div>
+
+    <div class="card border border-4 border-secondary shadow">
+        <div class="card-body fadeInAnimation">
+      
+          <div class="body mt-2">
+            <form (ngSubmit)="updateMember()" method="post">
+              <div class="row">
+                <!-- First Column -->
+                <div class="col-md-6 mb-3">
+                  <label for="name" class="form-label">Name:</label>
+                  <input type="text" class="form-control border border-dark border-2" id="name" name="name" required [(ngModel)]="member.name">
+                </div>
+          
+                <!-- Second Column -->
+                <div class="col-md-6 mb-3">
+                  <label for="lastName" class="form-label">Last Name:</label>
+                  <input type="text" class="form-control border border-dark border-2" id="lastName" name="lastName" required [(ngModel)]="member.familyName">
+                </div>
+              </div>
+          
+              <div class="row">
+                <!-- Third Column -->
+                <div class="col-md-6 mb-3">
+                  <label for="membershipNumber" class="form-label">Membership Number:</label>
+                  <input type="text" class="form-control border border-dark border-2" id="membershipNumber" name="membershipNumber" required [(ngModel)]="member.membershipNumber">
+                </div>
+          
+                <!-- Fourth Column -->
+                <div class="col-md-6 mb-3">
+                  <label for="nationality" class="form-label">Nationality:</label>
+                  <input type="text" class="form-control border border-dark border-2" id="nationality" name="nationality" required [(ngModel)]="member.nationality">
+                </div>
+              </div>
+          
+              <div class="row">
+                <!-- Identity Number -->
+                <div class="col-md-6 mb-3">
+                  <label for="identityNumber" class="form-label">Identity Number:</label>
+                  <input type="text" class="form-control border border-dark border-2" id="identityNumber" name="identityNumber" required [(ngModel)]="member.identityNumber">
+                </div>
+          
+                <!-- Identity Document Type -->
+                <div class="col-md-6 mb-3">
+                  <label for="identityDocumentType" class="form-label">Identity Document Type:</label>
+                  <input type="text" class="form-control border border-dark border-2" id="identityDocumentType" name="identityDocumentType" required [(ngModel)]="member.identityDocumentType">
+                </div>
+              </div>
+          
+              <button class="btn btn-success" type="submit">Update</button>
+            </form>
+          </div>
+      
+        </div>
+      </div>
+      
+</div>

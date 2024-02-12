@@ -1,0 +1,93 @@
+<div class="container mt-5">
+    <div class="d-flex justify-content-between">
+        <h2 class="mb-4">Competition Details</h2>
+        <button class="btn mb-1 btn-primary fw-bold" routerLink="/competition">BACK</button>
+    </div>
+
+    <div class="card text-dark bg-light mb-3">
+        <div class="card-body row g-3 fadeInAnimation">
+      
+          <!-- Competition Code Card -->
+    <div class="col-md-4">
+        <div class="card shadow">
+          <div class="card-body">
+            <h5 class="card-title fw-bold">Competition Code</h5>
+            <p class="card-text fs-5"><span class="mb-2" style="color: rgb(142, 141, 141);">{{ competition.code }}</span></p>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Date Card -->
+      <div class="col-md-4">
+        <div class="card shadow">
+          <div class="card-body">
+            <h5 class="card-title fw-bold">Date</h5>
+            <p class="card-text fs-5"><i class="bi bi-calendar fs-6 me-2 text-primary"></i><span class="mb-2" style="color: rgb(142, 141, 141);"> {{ competition.date }}</span></p>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Start Time Card -->
+      <div class="col-md-4">
+        <div class="card shadow">
+          <div class="card-body">
+            <h5 class="card-title fw-bold">Start Time</h5>
+            <p class="card-text fs-5"><i class="bi bi-clock fs-6 me-2 text-primary"></i><span class="mb-2" style="color: rgb(142, 141, 141);"> {{ competition.startTime }}</span></p>
+          </div>
+        </div>
+      </div>
+      
+          <!-- End Time Card -->
+          <div class="col-md-4">
+          <div class="card shadow">
+            <div class="card-body">
+              <h5 class="card-title fw-bold">End Time</h5>
+              <p class="card-text fs-5"><i class="bi bi-clock fs-6 me-2 text-primary"></i><span class="mb-2" style="color: rgb(142, 141, 141);"> {{ competition.endTime }}</span></p>
+            </div>
+          </div>
+        </div>
+      
+          <!-- Location Card -->
+          <div class="col-md-4">
+          <div class="card shadow">
+            <div class="card-body">
+              <h5 class="card-title fw-bold">Location</h5>
+              <p class="card-text fs-5"><i class="bi bi-geo-alt fs-6 me-2 text-primary"></i><span class="mb-2" style="color: rgb(142, 141, 141);"> {{ competition.location }}</span></p>
+            </div>
+          </div>
+         </div>
+      
+          <!-- Total Participants Card -->
+          <div class="col-md-4">
+          <div class="card shadow">
+            <div class="card-body">
+              <h5 class="card-title fw-bold">Total Participants</h5>
+              <p class="card-text fs-5"><i class="bi bi-person fs-6 me-2 text-primary"></i><span class="mb-2" style="color: rgb(142, 141, 141);"> {{ competition.totalParticipants }}</span></p>
+            </div>
+          </div>
+          </div>
+      
+          <!-- Amount Card -->
+          <div class="col-md-4">
+          <div class="card shadow">
+            <div class="card-body">
+              <h5 class="card-title fw-bold">Amount</h5>
+              <p class="card-text fs-5"><i class="bi bi-currency-dollar fs-6 me-2 text-primary"></i><span class="mb-2" style="color: rgb(142, 141, 141);"> {{ competition.amount }}</span></p>
+            </div>
+          </div>
+          </div>
+      
+          <!-- Status Card -->
+          <div class="col-md-4">
+          <div class="card shadow">
+            <div class="card-body">
+              <h5 class="card-title fw-bold">Status</h5>
+              <p class="card-text fs-5"><i class="bi bi-check-circle fs-6 me-2 text-primary"></i><span class="mb-2" style="color: rgb(142, 141, 141);">{{ competition.status }}</span></p>
+            </div>
+          </div>
+          </div>
+      
+        </div>
+      </div>
+      
+</div>

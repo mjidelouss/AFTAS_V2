@@ -1,0 +1,65 @@
+<div class="container mt-5">
+  <div class="d-flex justify-content-between">
+    <h2 class="mb-4">Add Member</h2>
+    <button class="btn mb-1 btn-primary fw-bold" (click)="goBack()">BACK</button>
+  </div>
+
+  <div class="card border border-4 border-secondary shadow">
+    <div class="card-body fadeInAnimation">
+
+      <!-- Your HTML template -->
+      <div class="body mt-2">
+        <form (ngSubmit)="addMember(memberForm.value)" #memberForm="ngForm" method="post">
+          <!-- Your form inputs with ngModel for two-way binding -->
+          <div class="row">
+            <!-- First Column -->
+            <div class="col-md-6 mb-3">
+              <label for="name" class="form-label">Name:</label>
+              <input type="text" class="form-control border border-dark border-2" id="name" name="name" required
+                ngModel>
+            </div>
+
+            <!-- Second Column -->
+            <div class="col-md-6 mb-3">
+              <label for="familyName" class="form-label">Last Name:</label>
+              <input type="text" class="form-control border border-dark border-2" id="familyName" name="familyName" required
+                ngModel>
+            </div>
+          </div>
+
+          <!-- Repeat the same structure for other pairs of inputs -->
+
+          <div class="row">
+            <!-- Identity Number -->
+            <div class="col-md-6 mb-3">
+              <label for="identityNumber" class="form-label">Identity Number:</label>
+              <input type="text" class="form-control border border-dark border-2" id="identityNumber"
+                name="identityNumber" required ngModel>
+            </div>
+
+            <!-- Identity Document Type -->
+            <div class="col-md-6 mb-3">
+              <label for="identityDocumentType" class="form-label">Identity Document Type:</label>
+              <select class="form-select border border-dark border-2" id="identityDocumentType" name="identityDocumentType" required ngModel>
+                <option *ngFor="let docType of identityDocumentTypes" [value]="docType">{{ docType }}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="nationality" class="form-label">Nationality:</label>
+              <input type="text" class="form-control border border-dark border-2" id="nationality" name="nationality" required
+                ngModel>
+            </div>
+          </div>
+
+          <button class="btn btn-primary" type="submit">Save</button>
+        </form>
+      </div>
+
+
+    </div>
+  </div>
+
+</div>
