@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import static com.example.aftas.enums.Privilege.*;
+
 @RequiredArgsConstructor
 public enum Role {
     ADMIN(
