@@ -6,7 +6,7 @@ import {
 } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import {HttpClientModule, HttpClient, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { Routes, RouterModule } from '@angular/router';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -26,6 +26,7 @@ import { MemberService } from './service/member.service';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AccessDeniedComponent } from './errors/access-denied/access-denied.component';
+import {HttpInterceptor} from "./helpers/http.interceptor";
 
 
 @NgModule({
@@ -52,6 +53,7 @@ import { AccessDeniedComponent } from './errors/access-denied/access-denied.comp
     NavigationComponent,
   ],
   providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptor, multi: true },
     MemberService,
     {
       provide: LocationStrategy,
