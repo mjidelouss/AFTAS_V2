@@ -1,5 +1,7 @@
 package com.example.aftas.service;
 
+import com.example.aftas.VM.request.RefreshTokenRequest;
+import com.example.aftas.VM.response.RefreshTokenResponse;
 import com.example.aftas.entities.RefreshToken;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.ResponseCookie;

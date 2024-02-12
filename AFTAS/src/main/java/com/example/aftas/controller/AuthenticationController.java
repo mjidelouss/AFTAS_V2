@@ -1,5 +1,10 @@
 package com.example.aftas.controller;
 
+import com.example.aftas.VM.request.AuthenticationRequest;
+import com.example.aftas.VM.request.RefreshTokenRequest;
+import com.example.aftas.VM.request.RegisterRequest;
+import com.example.aftas.VM.response.AuthenticationResponse;
+import com.example.aftas.VM.response.RefreshTokenResponse;
 import com.example.aftas.service.AuthenticationService;
 import com.example.aftas.service.JwtService;
 import com.example.aftas.service.RefreshTokenService;
@@ -105,4 +110,5 @@ public class AuthenticationController {
                 .build();
 
     }
+
 }

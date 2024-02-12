@@ -23,12 +23,18 @@ import { AppComponent } from './app.component';
 import { SpinnerComponent } from './shared/spinner.component';
 import { DataTablesModule } from 'angular-datatables';
 import { MemberService } from './service/member.service';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { AccessDeniedComponent } from './errors/access-denied/access-denied.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     SpinnerComponent,
+    LoginComponent,
+    RegisterComponent,
+    AccessDeniedComponent,
   ],
   imports: [
     CommonModule,
