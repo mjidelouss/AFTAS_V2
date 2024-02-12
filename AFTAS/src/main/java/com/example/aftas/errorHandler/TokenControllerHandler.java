@@ -1,5 +1,6 @@
 package com.example.aftas.errorHandler;
 
+import com.example.aftas.enums.Role;
 import com.example.aftas.exception.TokenException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
