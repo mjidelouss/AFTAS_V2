@@ -25,6 +25,34 @@ export class AuthService {
     private router: Router
   ) { }
 
+  register(firstname: string, lastname: string, email: string, password: string, role: string) {
+    return this.http.request<AuthResponseData>('post', 'http://localhost:8080/api/v1/auth/register',
+      {
+        body: { firstname, lastname, email, password, role },
+        withCredentials: true
+      }).pipe(
+      catchError(err => {
+        console.log(err);
+        let errorMessage = 'An unknown error occurred!';
+        return throwError(() => new Error(errorMessage))
+      }),
+      tap(
+        user => {
+          const extractedUser : User = {
+            email: user.email,
+            id: user.id,
+            role : {
+              name : user.roles.find(role => role.includes('ROLE')) || '',
+              permissions : user.roles.filter(permission => !permission.includes('ROLE'))
+            }
+          }
+          this.storageService.saveUser(extractedUser);
+          this.AuthenticatedUser$.next(extractedUser);
+        }
+      )
+    );
+  }
+
   login(email : string, password: string) {
     return this.http.request<AuthResponseData>('post','http://localhost:8080/api/v1/auth/authenticate',
       {

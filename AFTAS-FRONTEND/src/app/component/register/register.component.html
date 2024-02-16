@@ -1,0 +1,97 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Register</h4>
+          <div class="alert alert-danger" *ngIf="errorMessage">
+            <p>{{ errorMessage }}</p>
+          </div>
+          <form #formRegister="ngForm" (ngSubmit)="onSubmitRegister(formRegister)">
+            <div class="mb-3">
+              <label for="firstname" class="form-label">First Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="firstname"
+                placeholder="First Name"
+                ngModel
+                #firstname="ngModel"
+                name="firstname"
+                required>
+              <div *ngIf="firstname.errors && formRegister.submitted" class="text-danger">
+                First Name is required!
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="lastname" class="form-label">Last Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="lastname"
+                placeholder="Last Name"
+                ngModel
+                #lastname="ngModel"
+                name="lastname"
+                required>
+              <div *ngIf="lastname.errors && formRegister.submitted" class="text-danger">
+                Last Name is required!
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                placeholder="Email Address"
+                ngModel
+                #email="ngModel"
+                name="email"
+                required
+                email>
+              <div *ngIf="email.errors && formRegister.submitted" class="text-danger">
+                Email is required!
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                placeholder="Password"
+                ngModel
+                #password="ngModel"
+                name="password"
+                required
+                minlength="6">
+              <div *ngIf="password.errors && formRegister.submitted" class="text-danger">
+                <div *ngIf="password.errors['required']">Password is required</div>
+                <div *ngIf="password.errors['minlength']">
+                  Password must be at least 6 characters
+                </div>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="role" class="form-label">Role</label>
+              <input
+                type="text"
+                class="form-control"
+                id="role"
+                placeholder="User Role"
+                ngModel
+                #role="ngModel"
+                name="role"
+                required>
+              <div *ngIf="role.errors && formRegister.submitted" class="text-danger">
+                Role is required!
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Register</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

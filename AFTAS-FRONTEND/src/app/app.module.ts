@@ -23,8 +23,8 @@ import { AppComponent } from './app.component';
 import { SpinnerComponent } from './shared/spinner.component';
 import { DataTablesModule } from 'angular-datatables';
 import { MemberService } from './service/member.service';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './component/login/login.component';
+import { RegisterComponent } from './component/register/register.component';
 import { AccessDeniedComponent } from './errors/access-denied/access-denied.component';
 import {HttpInterceptor} from "./helpers/http.interceptor";
 

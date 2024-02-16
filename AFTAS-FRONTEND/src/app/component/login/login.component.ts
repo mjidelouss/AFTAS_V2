@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit } from '@angular/core';
 import {NgForm} from "@angular/forms";
-import {AuthService} from "../service/auth.service";
+import {AuthService} from "../../service/auth.service";
 import {Router} from "@angular/router";
 import {Subscription} from "rxjs";
 
