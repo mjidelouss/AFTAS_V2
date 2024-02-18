@@ -13,6 +13,9 @@ import { FishComponent } from './component/fish/fish.component';
 import { MemberComponent } from './component/member/member.component';
 import { AddFishComponent } from './component/add-fish/add-fish.component';
 import { RankComponent } from './component/rank/rank.component';
+import {LoginComponent} from "./component/login/login.component";
+import {RegisterComponent} from "./component/register/register.component";
+import {AccessDeniedComponent} from "./component/access-denied/access-denied.component"
 
 export const Approutes: Routes = [
   {
@@ -71,12 +74,24 @@ export const Approutes: Routes = [
       {
         path: 'add-fish',
         component: AddFishComponent
-      },{
+      },
+      {
 				path: 'ranking',
 				component: RankComponent
 			},
-
     ]
+  },
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: 'register',
+    component: RegisterComponent
+  },
+  {
+    path: 'not-found',
+    component: AccessDeniedComponent
   },
   {
     path: '**',
