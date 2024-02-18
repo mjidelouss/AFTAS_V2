@@ -27,6 +27,7 @@ import { LoginComponent } from './component/login/login.component';
 import { RegisterComponent } from './component/register/register.component';
 import { AccessDeniedComponent } from './errors/access-denied/access-denied.component';
 import {HttpInterceptor} from "./helpers/http.interceptor";
+import {MatIconModule} from "@angular/material/icon";
 
 
 @NgModule({
@@ -47,10 +48,11 @@ import {HttpInterceptor} from "./helpers/http.interceptor";
     ReactiveFormsModule,
     HttpClientModule,
     NgbModule,
-    RouterModule.forRoot(Approutes, { useHash: false }),
+    RouterModule.forRoot(Approutes, {useHash: false}),
     FullComponent,
     SidebarComponent,
     NavigationComponent,
+    MatIconModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptor, multi: true },

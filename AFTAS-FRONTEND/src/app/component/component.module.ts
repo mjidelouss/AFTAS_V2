@@ -19,6 +19,7 @@ import { MemberDetailsComponent } from './member-details/member-details.componen
 import { AddLevelComponent } from './add-level/add-level.component';
 import { AddFishComponent } from './add-fish/add-fish.component';
 import { RankComponent } from './rank/rank.component';
+import { AccessDeniedComponent } from './access-denied/access-denied.component';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { RankComponent } from './rank/rank.component';
     AddLevelComponent,
     AddFishComponent,
     RankComponent,
+    AccessDeniedComponent,
   ],
 })
 export class ComponentsModule { }
