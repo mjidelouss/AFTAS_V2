@@ -17,6 +17,8 @@ import {LoginComponent} from "./component/login/login.component";
 import {RegisterComponent} from "./component/register/register.component";
 import {AccessDeniedComponent} from "./component/access-denied/access-denied.component"
 import {LockComponent} from "./component/lock/lock.component";
+import {ForbiddenComponent} from "./errors/forbidden/forbidden.component";
+import {authGuard} from "./helpers/auth.guard";
 
 export const Approutes: Routes = [
   {
@@ -26,7 +28,9 @@ export const Approutes: Routes = [
       { path: '', redirectTo: '/competition', pathMatch: 'full' },
       {
         path: 'competition',
-        loadChildren: () => import('./competition/competition.module').then(m => m.CompetitionModule)
+        loadChildren: () => import('./competition/competition.module').then(m => m.CompetitionModule),
+        canActivate: [authGuard],
+        data: {roles: ['ROLE_MANAGER', 'ROLE_JURY']}
       },
       {
         path: 'component',
@@ -46,7 +50,7 @@ export const Approutes: Routes = [
 			},
       {
         path: 'competition-detail',
-        component: CompetitionDetailComponent
+        component: CompetitionDetailComponent,
       },
       {
         path: 'add-competition',
@@ -97,6 +101,10 @@ export const Approutes: Routes = [
   {
     path: 'not-found',
     component: AccessDeniedComponent
+  },
+  {
+    path: 'forbidden',
+    component: ForbiddenComponent
   },
   {
     path: '**',

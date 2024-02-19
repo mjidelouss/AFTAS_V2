@@ -19,7 +19,6 @@ import { MemberDetailsComponent } from './member-details/member-details.componen
 import { AddLevelComponent } from './add-level/add-level.component';
 import { AddFishComponent } from './add-fish/add-fish.component';
 import { RankComponent } from './rank/rank.component';
-import { AccessDeniedComponent } from './access-denied/access-denied.component';
 import { LockComponent } from './lock/lock.component';
 
 
@@ -46,7 +45,6 @@ import { LockComponent } from './lock/lock.component';
     AddLevelComponent,
     AddFishComponent,
     RankComponent,
-    AccessDeniedComponent,
     LockComponent,
   ],
 })
