@@ -16,6 +16,7 @@ import { RankComponent } from './component/rank/rank.component';
 import {LoginComponent} from "./component/login/login.component";
 import {RegisterComponent} from "./component/register/register.component";
 import {AccessDeniedComponent} from "./component/access-denied/access-denied.component"
+import {LockComponent} from "./component/lock/lock.component";
 
 export const Approutes: Routes = [
   {
@@ -88,6 +89,10 @@ export const Approutes: Routes = [
   {
     path: 'register',
     component: RegisterComponent
+  },
+  {
+    path: 'lock',
+    component: LockComponent
   },
   {
     path: 'not-found',

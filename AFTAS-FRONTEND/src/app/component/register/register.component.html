@@ -6,32 +6,49 @@
         <div class="card cascading-right">
           <div class="card-body p-5 shadow-5 text-center shadow">
             <h2 class="fw-bold mb-5 text-black-50">Sign up now</h2>
-            <form>
+            <div class="alert alert-danger" *ngIf="errorMessage">
+              <p>{{ errorMessage }}</p>
+            </div>
+            <form #formRegister="ngForm" (ngSubmit)="onSubmitRegister(formRegister)">
               <div class="row">
                 <div class="col-md-6 mb-4">
                   <div class="form-outline">
-                    <input type="text" id="form3Example1" class="form-control" />
-                    <label class="form-label mt-1" for="form3Example1">First name</label>
+                    <input type="text" class="form-control" id="firstname" placeholder="First Name" ngModel #firstname="ngModel" name="firstname" required />
+                    <div *ngIf="firstname.errors && formRegister.submitted" class="text-danger">
+                      First Name is required!
+                    </div>
+                    <label class="form-label mt-1" for="firstname">First name</label>
                   </div>
                 </div>
                 <div class="col-md-6 mb-4">
                   <div class="form-outline">
-                    <input type="text" id="form3Example2" class="form-control" />
-                    <label class="form-label mt-1" for="form3Example2">Last name</label>
+                    <input type="text" class="form-control" id="lastname" placeholder="Last Name" ngModel #lastname="ngModel" name="lastname" required/>
+                    <div *ngIf="lastname.errors && formRegister.submitted" class="text-danger">
+                      Last Name is required!
+                    </div>
+                    <label class="form-label mt-1" for="lastname">Last name</label>
                   </div>
                 </div>
               </div>
 
               <!-- Email input -->
               <div class="form-outline mb-4">
-                <input type="email" id="form3Example3" class="form-control" />
-                <label class="form-label mt-1" for="form3Example3">Email address</label>
+                <input type="email" class="form-control" id="email" placeholder="Email Address" ngModel #email="ngModel" name="email" required />
+                <div *ngIf="email.errors && formRegister.submitted" class="text-danger">
+                  Email is required!
+                </div>
+                <label class="form-label mt-1" for="email">Email address</label>
               </div>
 
               <!-- Password input -->
               <div class="form-outline mb-4">
-                <input type="password" id="form3Example4" class="form-control" />
-                <label class="form-label mt-1" for="form3Example4">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Password" ngModel #password="ngModel" name="password" required minlength="6" />
+                <div *ngIf="password.errors && formRegister.submitted" class="text-danger">
+                  <div *ngIf="password.errors['required']">Password is required</div>
+                  <div *ngIf="password.errors['minlength']">
+                    Password must be at least 6 characters
+                  </div>
+                <label class="form-label mt-1" for="password">Password</label>
               </div>
 
               <!-- Checkbox -->
@@ -50,117 +67,16 @@
               <div class="text-center">
                 <a routerLink="/login" class="fs-4 text-black-50">Already have an account? <span class="text-primary fw-bold ms-1">Login</span></a>
               </div>
+              </div>
             </form>
           </div>
         </div>
       </div>
 
       <div class="col-lg-6 mb-5 mb-lg-0">
-        <img src="./assets/images/register.jpg" height="700" class="w-75 rounded-4 shadow-4"
-             alt="" />
+        <img src="./assets/images/register.jpg" height="700" class="w-75 rounded-4 shadow-4" alt="" />
       </div>
     </div>
   </div>
   <!-- Jumbotron -->
 </section>
-
-
-
-
-<!--<div class="container mt-5">-->
-<!--  <div class="row justify-content-center">-->
-<!--    <div class="col-md-6">-->
-<!--      <div class="card">-->
-<!--        <div class="card-body">-->
-<!--          <h4 class="card-title">Register</h4>-->
-<!--          <div class="alert alert-danger" *ngIf="errorMessage">-->
-<!--            <p>{{ errorMessage }}</p>-->
-<!--          </div>-->
-<!--          <form #formRegister="ngForm" (ngSubmit)="onSubmitRegister(formRegister)">-->
-<!--            <div class="mb-3">-->
-<!--              <label for="firstname" class="form-label">First Name</label>-->
-<!--              <input-->
-<!--                type="text"-->
-<!--                class="form-control"-->
-<!--                id="firstname"-->
-<!--                placeholder="First Name"-->
-<!--                ngModel-->
-<!--                #firstname="ngModel"-->
-<!--                name="firstname"-->
-<!--                required>-->
-<!--              <div *ngIf="firstname.errors && formRegister.submitted" class="text-danger">-->
-<!--                First Name is required!-->
-<!--              </div>-->
-<!--            </div>-->
-<!--            <div class="mb-3">-->
-<!--              <label for="lastname" class="form-label">Last Name</label>-->
-<!--              <input-->
-<!--                type="text"-->
-<!--                class="form-control"-->
-<!--                id="lastname"-->
-<!--                placeholder="Last Name"-->
-<!--                ngModel-->
-<!--                #lastname="ngModel"-->
-<!--                name="lastname"-->
-<!--                required>-->
-<!--              <div *ngIf="lastname.errors && formRegister.submitted" class="text-danger">-->
-<!--                Last Name is required!-->
-<!--              </div>-->
-<!--            </div>-->
-<!--            <div class="mb-3">-->
-<!--              <label for="email" class="form-label">Email</label>-->
-<!--              <input-->
-<!--                type="email"-->
-<!--                class="form-control"-->
-<!--                id="email"-->
-<!--                placeholder="Email Address"-->
-<!--                ngModel-->
-<!--                #email="ngModel"-->
-<!--                name="email"-->
-<!--                required-->
-<!--                email>-->
-<!--              <div *ngIf="email.errors && formRegister.submitted" class="text-danger">-->
-<!--                Email is required!-->
-<!--              </div>-->
-<!--            </div>-->
-<!--            <div class="mb-3">-->
-<!--              <label for="password" class="form-label">Password</label>-->
-<!--              <input-->
-<!--                type="password"-->
-<!--                class="form-control"-->
-<!--                id="password"-->
-<!--                placeholder="Password"-->
-<!--                ngModel-->
-<!--                #password="ngModel"-->
-<!--                name="password"-->
-<!--                required-->
-<!--                minlength="6">-->
-<!--              <div *ngIf="password.errors && formRegister.submitted" class="text-danger">-->
-<!--                <div *ngIf="password.errors['required']">Password is required</div>-->
-<!--                <div *ngIf="password.errors['minlength']">-->
-<!--                  Password must be at least 6 characters-->
-<!--                </div>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--            <div class="mb-3">-->
-<!--              <label for="role" class="form-label">Role</label>-->
-<!--              <input-->
-<!--                type="text"-->
-<!--                class="form-control"-->
-<!--                id="role"-->
-<!--                placeholder="User Role"-->
-<!--                ngModel-->
-<!--                #role="ngModel"-->
-<!--                name="role"-->
-<!--                required>-->
-<!--              <div *ngIf="role.errors && formRegister.submitted" class="text-danger">-->
-<!--                Role is required!-->
-<!--              </div>-->
-<!--            </div>-->
-<!--            <button type="submit" class="btn btn-primary">Register</button>-->
-<!--          </form>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
