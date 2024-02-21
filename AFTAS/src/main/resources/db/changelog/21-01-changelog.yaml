@@ -1,0 +1,417 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1708526233200-1
+      author: lordo (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_appuser
+                  name: id
+                  type: BIGINT
+              - column:
+                  name: firstname
+                  type: VARCHAR(255)
+              - column:
+                  name: lastname
+                  type: VARCHAR(255)
+              - column:
+                  name: email
+                  type: VARCHAR(255)
+              - column:
+                  name: password
+                  type: VARCHAR(255)
+              - column:
+                  name: role
+                  type: VARCHAR(255)
+            tableName: app_user
+  - changeSet:
+      id: 1708526233200-2
+      author: lordo (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_competition
+                  name: id
+                  type: BIGINT
+              - column:
+                  name: code
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: date
+                  type: DATE
+              - column:
+                  constraints:
+                    nullable: false
+                  name: start_time
+                  type: TIME
+              - column:
+                  constraints:
+                    nullable: false
+                  name: end_time
+                  type: TIME
+              - column:
+                  constraints:
+                    nullable: false
+                  name: total_participants
+                  type: INT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: location
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: amount
+                  type: DOUBLE
+              - column:
+                  constraints:
+                    nullable: false
+                  name: status
+                  type: VARCHAR(255)
+            tableName: competition
+  - changeSet:
+      id: 1708526233200-3
+      author: lordo (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_fish
+                  name: id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: name
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: average_weight
+                  type: DOUBLE
+              - column:
+                  constraints:
+                    nullable: false
+                  name: level_id
+                  type: BIGINT
+            tableName: fish
+  - changeSet:
+      id: 1708526233200-4
+      author: lordo (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_hunt
+                  name: id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: number_of_fish
+                  type: INT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: member_id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: fish_id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: competition_id
+                  type: BIGINT
+            tableName: hunt
+  - changeSet:
+      id: 1708526233200-5
+      author: lordo (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_level
+                  name: id
+                  type: BIGINT
+              - column:
+                  name: level
+                  type: INT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: description
+                  type: VARCHAR(255)
+              - column:
+                  name: points
+                  type: INT
+            tableName: level
+  - changeSet:
+      id: 1708526233200-6
+      author: lordo (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_member
+                  name: id
+                  type: BIGINT
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+              - column:
+                  name: family_name
+                  type: VARCHAR(255)
+              - column:
+                  name: membership_number
+                  type: INT
+              - column:
+                  name: access_date
+                  type: DATE
+              - column:
+                  name: nationality
+                  type: VARCHAR(255)
+              - column:
+                  name: identity_document_type
+                  type: VARCHAR(255)
+              - column:
+                  name: identity_number
+                  type: VARCHAR(255)
+            tableName: member
+  - changeSet:
+      id: 1708526233200-7
+      author: lordo (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueNumeric: !!float '0'
+                  name: rank
+                  type: integer
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueNumeric: !!float '0'
+                  name: score
+                  type: integer
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_rank
+                  name: member_id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_rank
+                  name: competition_id
+                  type: BIGINT
+            tableName: rank
+  - changeSet:
+      id: 1708526233200-8
+      author: lordo (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_refreshtoken
+                  name: id
+                  type: BIGINT
+              - column:
+                  name: user_id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: token
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: expiry_date
+                  type: DATETIME
+              - column:
+                  constraints:
+                    nullable: false
+                  name: revoked
+                  type: BOOLEAN
+            tableName: refresh_token
+  - changeSet:
+      id: 1708526233200-9
+      author: lordo (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addUniqueConstraint:
+            columnNames: code
+            constraintName: uc_competition_code
+            tableName: competition
+  - changeSet:
+      id: 1708526233200-10
+      author: lordo (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addUniqueConstraint:
+            columnNames: date
+            constraintName: uc_competition_date
+            tableName: competition
+  - changeSet:
+      id: 1708526233200-11
+      author: lordo (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addUniqueConstraint:
+            columnNames: name
+            constraintName: uc_fish_name
+            tableName: fish
+  - changeSet:
+      id: 1708526233200-12
+      author: lordo (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addUniqueConstraint:
+            columnNames: level
+            constraintName: uc_level_level
+            tableName: level
+  - changeSet:
+      id: 1708526233200-13
+      author: lordo (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addUniqueConstraint:
+            columnNames: points
+            constraintName: uc_level_points
+            tableName: level
+  - changeSet:
+      id: 1708526233200-14
+      author: lordo (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addUniqueConstraint:
+            columnNames: token
+            constraintName: uc_refreshtoken_token
+            tableName: refresh_token
+  - changeSet:
+      id: 1708526233200-15
+      author: lordo (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: level_id
+            baseTableName: fish
+            constraintName: FK_FISH_ON_LEVEL
+            referencedColumnNames: id
+            referencedTableName: level
+  - changeSet:
+      id: 1708526233200-16
+      author: lordo (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: competition_id
+            baseTableName: hunt
+            constraintName: FK_HUNT_ON_COMPETITION
+            referencedColumnNames: id
+            referencedTableName: competition
+  - changeSet:
+      id: 1708526233200-17
+      author: lordo (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: fish_id
+            baseTableName: hunt
+            constraintName: FK_HUNT_ON_FISH
+            referencedColumnNames: id
+            referencedTableName: fish
+  - changeSet:
+      id: 1708526233200-18
+      author: lordo (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: member_id
+            baseTableName: hunt
+            constraintName: FK_HUNT_ON_MEMBER
+            referencedColumnNames: id
+            referencedTableName: member
+  - changeSet:
+      id: 1708526233200-19
+      author: lordo (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: competition_id
+            baseTableName: rank
+            constraintName: FK_RANK_ON_COMPETITION
+            referencedColumnNames: id
+            referencedTableName: competition
+  - changeSet:
+      id: 1708526233200-20
+      author: lordo (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: member_id
+            baseTableName: rank
+            constraintName: FK_RANK_ON_MEMBER
+            referencedColumnNames: id
+            referencedTableName: member
+  - changeSet:
+      id: 1708526233200-21
+      author: lordo (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: user_id
+            baseTableName: refresh_token
+            constraintName: FK_REFRESHTOKEN_ON_USER
+            referencedColumnNames: id
+            referencedTableName: app_user
+

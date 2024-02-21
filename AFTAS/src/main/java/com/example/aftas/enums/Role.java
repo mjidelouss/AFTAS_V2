@@ -12,11 +12,12 @@ import static com.example.aftas.enums.Privilege.*;
 
 @RequiredArgsConstructor
 public enum Role {
-    ADMIN(
+    MANAGER(
             Set.of(READ_PRIVILEGE,WRITE_PRIVILEGE,UPDATE_PRIVILEGE,DELETE_PRIVILEGE)
     ),
-    USER(
-            Set.of(READ_PRIVILEGE,WRITE_PRIVILEGE)
+    JURY(Set.of(READ_PRIVILEGE,WRITE_PRIVILEGE,UPDATE_PRIVILEGE,DELETE_PRIVILEGE)),
+    MEMBER(
+            Set.of(READ_PRIVILEGE)
     );
 
     @Getter

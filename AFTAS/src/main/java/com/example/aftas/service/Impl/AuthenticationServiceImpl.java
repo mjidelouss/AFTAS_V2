@@ -1,5 +1,8 @@
 package com.example.aftas.service.Impl;
 
+import com.example.aftas.VM.request.AuthenticationRequest;
+import com.example.aftas.VM.request.RegisterRequest;
+import com.example.aftas.VM.response.AuthenticationResponse;
 import com.example.aftas.entities.AppUser;
 import com.example.aftas.enums.TokenType;
 import com.example.aftas.repository.AppUserRepository;
@@ -29,26 +32,16 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         var user = AppUser.builder()
                 .firstname(request.getFirstname())
                 .lastname(request.getLastname())
+                .nationality(request.getNationality())
+                .identityNumber(request.getIdentityNumber())
+                .identityDocumentType(request.getIdentityDocumentType())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
-                .role(request.getRole())
                 .build();
         user = userRepository.save(user);
-        var jwt = jwtService.generateToken(user);
-        var refreshToken = refreshTokenService.createRefreshToken(user.getId());
-
-        var roles = user.getRole().getAuthorities()
-                .stream()
-                .map(SimpleGrantedAuthority::getAuthority)
-                .toList();
-
         return AuthenticationResponse.builder()
-                .accessToken(jwt)
                 .email(user.getEmail())
                 .id(user.getId())
-                .refreshToken(refreshToken.getToken())
-                .roles(roles)
-                .tokenType( TokenType.BEARER.name())
                 .build();
     }
 
