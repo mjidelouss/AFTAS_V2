@@ -31,6 +31,10 @@ import {MatIconModule} from "@angular/material/icon";
 import { ForbiddenComponent } from './errors/forbidden/forbidden.component';
 import { MemberDashboardComponent } from './member-dashboard/member-dashboard.component';
 import { JuryDashboardComponent } from './jury-dashboard/jury-dashboard.component';
+import { MemberSidebarComponent } from './shared/member-sidebar/member-sidebar.component';
+import { JurySidebarComponent } from './shared/jury-sidebar/jury-sidebar.component';
+import { MemberLayoutComponent } from './layouts/member-layout/member-layout.component';
+import { JuryLayoutComponent } from './layouts/jury-layout/jury-layout.component';
 
 
 @NgModule({
@@ -56,7 +60,11 @@ import { JuryDashboardComponent } from './jury-dashboard/jury-dashboard.componen
     NgbModule,
     RouterModule.forRoot(Approutes, {useHash: false}),
     FullComponent,
+    MemberLayoutComponent,
+    JuryLayoutComponent,
     SidebarComponent,
+    MemberSidebarComponent,
+    JurySidebarComponent,
     NavigationComponent,
     MatIconModule,
   ],

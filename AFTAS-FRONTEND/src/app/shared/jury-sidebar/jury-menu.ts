@@ -1,4 +1,4 @@
-import { RouteInfo } from './sidebar.metadata';
+import { RouteInfo } from '../sidebar/sidebar.metadata';
 
 export const JURY_ROUTES: RouteInfo[] = [
 

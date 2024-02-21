@@ -20,6 +20,9 @@ import {LockComponent} from "./component/lock/lock.component";
 import {ForbiddenComponent} from "./errors/forbidden/forbidden.component";
 import {authGuard} from "./helpers/auth.guard";
 import {MemberDashboardComponent} from "./member-dashboard/member-dashboard.component";
+import {MemberLayoutComponent} from "./layouts/member-layout/member-layout.component";
+import {JuryLayoutComponent} from "./layouts/jury-layout/jury-layout.component";
+import {JuryDashboardComponent} from "./jury-dashboard/jury-dashboard.component";
 
 export const Approutes: Routes = [
   {
@@ -36,10 +39,6 @@ export const Approutes: Routes = [
       {
         path: 'component',
         loadChildren: () => import('./component/component.module').then(m => m.ComponentsModule)
-      },
-      {
-        path: 'member-dashboard',
-        component: MemberDashboardComponent
       },
       {
 				path: 'level',
@@ -89,6 +88,72 @@ export const Approutes: Routes = [
 				path: 'ranking',
 				component: RankComponent
 			},
+    ]
+  },
+  {
+    path: '',
+    component: MemberLayoutComponent,
+    children: [
+      { path: '', redirectTo: '/member-dashboard', pathMatch: 'full' },
+      {
+        path: 'component',
+        loadChildren: () => import('./component/component.module').then(m => m.ComponentsModule)
+      },
+      {
+        path: 'member-dashboard',
+        component: MemberDashboardComponent
+      },
+      {
+        path: 'ranking',
+        component: RankComponent
+      },
+    ]
+  },
+  {
+    path: '',
+    component: JuryLayoutComponent,
+    children: [
+      { path: '', redirectTo: '/jury-dashboard', pathMatch: 'full' },
+      {
+        path: 'component',
+        loadChildren: () => import('./component/component.module').then(m => m.ComponentsModule)
+      },
+      {
+        path: 'jury-dashboard',
+        component: JuryDashboardComponent
+      },
+      {
+        path: 'level',
+        component: LevelComponent
+      },
+      {
+        path: 'fish',
+        component: FishComponent
+      },
+      {
+        path: 'competition-detail',
+        component: CompetitionDetailComponent,
+      },
+      {
+        path: 'add-competition',
+        component: AddCompetitionComponent
+      },
+      {
+        path: 'edit-competition',
+        component: EditCompetitionComponent
+      },
+      {
+        path: 'add-level',
+        component: AddLevelComponent
+      },
+      {
+        path: 'add-fish',
+        component: AddFishComponent
+      },
+      {
+        path: 'ranking',
+        component: RankComponent
+      },
     ]
   },
   {
