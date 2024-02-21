@@ -13,6 +13,7 @@ import com.example.aftas.service.RankingService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,6 +28,7 @@ public class RankingController {
     private final MemberService memberService;
 
     @GetMapping("")
+    @PreAuthorize("hasAuthority('READ_PRIVILEGE') and hasAnyRole('MANAGER', 'JURY', 'USER')")
     public ResponseEntity getRankings() {
         List<Rank> ranks = rankingService.getRankings();
         if (ranks.isEmpty()) {
@@ -37,6 +39,7 @@ public class RankingController {
     }
 
     @PostMapping("")
+    @PreAuthorize("hasAuthority('WRITE_PRIVILEGE') and hasAnyRole('MANAGER', 'JURY')")
     public ResponseEntity addRanking(@RequestBody @Valid RankRequest rankRequest) {
         Rank rank = RankMapper.mapRankRequestToRank(rankRequest);
         Rank rank1 = rankingService.addRanking(rank);
@@ -48,6 +51,7 @@ public class RankingController {
     }
 
     @PostMapping("/register")
+    @PreAuthorize("hasAuthority('WRITE_PRIVILEGE') and hasAnyRole('MANAGER', 'JURY')")
     public ResponseEntity registerMemberToComeptition(@RequestBody @Valid RegisterRequest registerRequest) {
         Competition competition = competitionService.getCompetitionByCode(registerRequest.getCompetitionCode());
         Member member = memberService.getMemberByMembershipNumber(registerRequest.getMembershipNumber());
@@ -66,6 +70,7 @@ public class RankingController {
     }
 
     @PostMapping("/podium")
+    @PreAuthorize("hasAuthority('WRITE_PRIVILEGE') and hasAnyRole('MANAGER', 'JURY', 'USER')")
     public ResponseEntity getPodium(@RequestBody @Valid PodiumRequest podiumRequest) {
         Competition competition = competitionService.getCompetitionByCode(podiumRequest.getCode());
         rankingService.updateRankingOrder(competition);

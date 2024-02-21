@@ -8,6 +8,7 @@ import com.example.aftas.service.HuntingService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,6 +21,7 @@ public class HuntingController {
     private final HuntMapper huntMapper;
 
     @GetMapping("")
+    @PreAuthorize("hasAuthority('READ_PRIVILEGE') and hasAnyRole('MANAGER', 'JURY')")
     public ResponseEntity getHuntings() {
         List<Hunt> hunts = huntingService.getHuntings();
         if (hunts.isEmpty()) {
@@ -30,6 +32,7 @@ public class HuntingController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('READ_PRIVILEGE') and hasAnyRole('MANAGER', 'JURY')")
     public ResponseEntity getHuntingById(@PathVariable Long id) {
         Hunt hunt = huntingService.getHuntingById(id);
         if (hunt == null) {
@@ -40,6 +43,7 @@ public class HuntingController {
     }
 
     @PostMapping("")
+    @PreAuthorize("hasAuthority('WRITE_PRIVILEGE') and hasAnyRole('MANAGER', 'JURY')")
     public ResponseEntity addHunting(@RequestBody @Valid HuntingRequest huntingRequest) {
         Hunt hunt = huntMapper.mapHuntRequestToHunt(huntingRequest);
         Hunt hunt1 = huntingService.addHunting(hunt, huntingRequest.getHuntWeight());
@@ -51,6 +55,7 @@ public class HuntingController {
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasAuthority('UPDATE_PRIVILEGE') and hasAnyRole('MANAGER', 'JURY')")
     public ResponseEntity updateHunting(@RequestBody HuntingRequest huntingRequest, @PathVariable Long id) {
         Hunt hunt = huntMapper.mapHuntRequestToHunt(huntingRequest);
         Hunt hunt1 = huntingService.updateHunting(hunt, id);
@@ -61,6 +66,7 @@ public class HuntingController {
         }
     }
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('DELETE_PRIVILEGE') and hasAnyRole('MANAGER', 'JURY')")
     public ResponseEntity deleteHunting(@PathVariable Long id) {
         Hunt hunt = huntingService.getHuntingById(id);
         if (hunt == null) {

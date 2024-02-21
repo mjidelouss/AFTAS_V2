@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,6 +24,7 @@ public class CompetitionController {
     private final CompetitionService competitionService;
 
     @GetMapping("")
+    @PreAuthorize("hasAuthority('READ_PRIVILEGE') and hasAnyRole('MANAGER', 'JURY', 'MEMBER')")
     public ResponseEntity getCompetitions(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "5") int size) {
         Page<Competition> competitionsPage = competitionService.getCompetitions(PageRequest.of(page, size));
 
@@ -34,12 +36,14 @@ public class CompetitionController {
     }
 
     @GetMapping("/byStatus/{status}")
+    @PreAuthorize("hasAuthority('READ_PRIVILEGE') and hasAnyRole('MANAGER', 'JURY')")
     public ResponseEntity getCompetitionsByStatus(@PathVariable CompetitionStatus status) {
         List<Competition> competitions = competitionService.getCompetitionsByStatus(status);
         return ResponseMessage.ok("Successfully Got Competitions", competitions);
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('READ_PRIVILEGE') and hasAnyRole('MANAGER', 'JURY')")
     public ResponseEntity getCompetitionById(@PathVariable Long id) {
         Competition competition = competitionService.getCompetitionById(id);
         if (competition == null) {
@@ -50,6 +54,7 @@ public class CompetitionController {
     }
 
     @PostMapping("")
+    @PreAuthorize("hasAuthority('WRITE_PRIVILEGE') and hasAnyRole('MANAGER', 'JURY')")
     public ResponseEntity addCompetition(@RequestBody @Valid CompetitionRequest competitionRequest) {
         Competition competition = CompetitionMapper.mapCompetitionRequestToCompetition(competitionRequest);
         Competition competition1 = competitionService.addCompetition(competition);
@@ -61,6 +66,7 @@ public class CompetitionController {
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasAuthority('UPDATE_PRIVILEGE') and hasAnyRole('MANAGER', 'JURY')")
     public ResponseEntity updateCompetition(@RequestBody @Valid CompetitionRequest competitionRequest, @PathVariable Long id) {
         Competition competition = CompetitionMapper.mapCompetitionRequestToCompetition(competitionRequest);
         Competition competition1 = competitionService.updateCompetition(competition, id);
@@ -71,6 +77,7 @@ public class CompetitionController {
         }
     }
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('DELETE_PRIVILEGE') and hasAnyRole('MANAGER', 'JURY')")
     public ResponseEntity deleteCompetition(@PathVariable Long id) {
         Competition competition = competitionService.getCompetitionById(id);
         if (competition == null) {

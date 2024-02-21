@@ -8,6 +8,7 @@ import com.example.aftas.service.MemberService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,6 +21,7 @@ public class MemberController {
     private final MemberService memberService;
 
     @GetMapping("/all")
+    @PreAuthorize("hasAuthority('READ_PRIVILEGE') and hasRole('MANAGER')")
     public ResponseEntity getMembers() {
         List<Member> members = memberService.getMembers();
         if (members.isEmpty()) {
@@ -30,6 +32,7 @@ public class MemberController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('READ_PRIVILEGE') and hasRole('MANAGER')")
     public ResponseEntity getMemberById(@PathVariable Long id) {
         Member member = memberService.getMemberById(id);
         if (member == null) {
@@ -40,6 +43,7 @@ public class MemberController {
     }
 
     @PostMapping("")
+    @PreAuthorize("hasAuthority('WRITE_PRIVILEGE') and hasRole('MANAGER')")
     public ResponseEntity addMember(@RequestBody @Valid MemberRequest memberRequest) {
         Member member = MemberMapper.mapMemberRequestToMember(memberRequest);
         Member member1 = memberService.addMember(member);
@@ -51,6 +55,7 @@ public class MemberController {
     }
 
     @GetMapping("")
+    @PreAuthorize("hasAuthority('READ_PRIVILEGE') and hasRole('MANAGER')")
     public ResponseEntity searchMember(@RequestParam String searchTerm) {
         List<Member> members = memberService.searchMember(searchTerm);
         if (members.isEmpty()) {
@@ -61,6 +66,7 @@ public class MemberController {
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasAuthority('UPDATE_PRIVILEGE') and hasRole('MANAGER')")
     public ResponseEntity updateMember(@RequestBody @Valid MemberRequest memberRequest, @PathVariable Long id) {
         Member member = MemberMapper.mapMemberRequestToMember(memberRequest);
         Member member1 = memberService.updateMember(member, id);
@@ -71,6 +77,7 @@ public class MemberController {
         }
     }
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('DELETE_PRIVILEGE') and hasRole('MANAGER')")
     public ResponseEntity deleteMember(@PathVariable Long id) {
         Member member = memberService.getMemberById(id);
         if (member == null) {

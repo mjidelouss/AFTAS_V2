@@ -8,6 +8,7 @@ import com.example.aftas.service.FishService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,6 +21,7 @@ public class FishController {
     private final FishMapper fishMapper;
 
     @GetMapping("")
+    @PreAuthorize("hasAuthority('READ_PRIVILEGE') and hasAnyRole('MANAGER', 'JURY')")
     public ResponseEntity getFishes() {
         List<Fish> fishes = fishService.getFishes();
         if (fishes.isEmpty()) {
@@ -30,6 +32,7 @@ public class FishController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('READ_PRIVILEGE') and hasAnyRole('MANAGER', 'JURY')")
     public ResponseEntity getFishById(@PathVariable Long id) {
         Fish fish = fishService.getFishById(id);
         if (fish == null) {
@@ -40,6 +43,7 @@ public class FishController {
     }
 
     @PostMapping()
+    @PreAuthorize("hasAuthority('WRITE_PRIVILEGE') and hasAnyRole('MANAGER', 'JURY')")
     public ResponseEntity addFish(@RequestBody @Valid FishRequest fishRequest) {
         Fish fish = fishMapper.mapFishRequestToFish(fishRequest);
         Fish fish1 = fishService.addFish(fish);
@@ -51,6 +55,7 @@ public class FishController {
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasAuthority('UPDATE_PRIVILEGE') and hasAnyRole('MANAGER', 'JURY')")
     public ResponseEntity updateFish(@RequestBody @Valid FishRequest fishRequest, @PathVariable Long id) {
         Fish fish = fishMapper.mapFishRequestToFish(fishRequest);
         Fish fish1 = fishService.updateFish(fish, id);
@@ -62,6 +67,7 @@ public class FishController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('DELETE_PRIVILEGE') and hasAnyRole('MANAGER', 'JURY')")
     public ResponseEntity deleteFish(@PathVariable Long id) {
         Fish fish = fishService.getFishById(id);
         if (fish == null) {
