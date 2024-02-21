@@ -1,35 +1,31 @@
 package com.example.aftas.controller;
 
+import com.example.aftas.entities.AppUser;
+import com.example.aftas.enums.Role;
+import com.example.aftas.repository.AppUserRepository;
+import com.example.aftas.response.ResponseMessage;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1")
+@RequiredArgsConstructor
 public class AuthorizationController {
 
+    private final AppUserRepository userRepository;
 
-
-    @GetMapping("/admin/resource")
-    @PreAuthorize("hasAuthority('READ_PRIVILEGE') and hasRole('ADMIN')")
-    public ResponseEntity<String> sayHelloWithRoleAdminAndReadAuthority() {
-        return ResponseEntity.ok("Hello, you have access to a protected resource that requires admin role and read authority.");
-    }
-
-    @DeleteMapping("/admin/resource")
-    @PreAuthorize("hasAuthority('DELETE_PRIVILEGE') and hasRole('ADMIN')")
-    public ResponseEntity<String> sayHelloWithRoleAdminAndDeleteAuthority() {
-        return ResponseEntity.ok("Hello, you have access to a protected resource that requires admin role and delete authority.");
-    }
-    @PostMapping("/user/resource")
-    @PreAuthorize("hasAuthority('WRITE_PRIVILEGE') and hasAnyRole('ADMIN','USER')")
-    public ResponseEntity<String> sayHelloWithRoleUserAndCreateAuthority() {
-        return ResponseEntity.ok("Hello, you have access to a protected resource that requires user role and write authority.");
-    }
-    @PutMapping("/user/resource")
-    @PreAuthorize("hasAuthority('UPDATE_PRIVILEGE') and hasAnyRole('ADMIN','USER')")
-    public ResponseEntity<String> sayHelloWithRoleUserAndUpdateAuthority() {
-        return ResponseEntity.ok("Hello, you have access to a protected resource that requires user role and update authority.");
+    @PostMapping("/activate")
+    @PreAuthorize("hasAuthority('WRITE_PRIVILEGE') and hasRole('MANAGER')")
+    public ResponseEntity<String> activateAccount(@PathVariable Long id) {
+        AppUser user = userRepository.findById(id).orElse(null);
+        if (user == null) {
+            return ResponseMessage.notFound("User Not Found");
+        } else {
+            user.setRole(Role.MEMBER);
+            return ResponseEntity.ok("Activated Account of User with ID: " + user.getId() + " Successfully");
+        }
     }
 
 }
