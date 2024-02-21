@@ -29,6 +29,8 @@ import {AccessDeniedComponent} from "./component/access-denied/access-denied.com
 import {HttpInterceptor} from "./helpers/http.interceptor";
 import {MatIconModule} from "@angular/material/icon";
 import { ForbiddenComponent } from './errors/forbidden/forbidden.component';
+import { MemberDashboardComponent } from './member-dashboard/member-dashboard.component';
+import { JuryDashboardComponent } from './jury-dashboard/jury-dashboard.component';
 
 
 @NgModule({
@@ -39,6 +41,8 @@ import { ForbiddenComponent } from './errors/forbidden/forbidden.component';
     RegisterComponent,
     AccessDeniedComponent,
     ForbiddenComponent,
+    MemberDashboardComponent,
+    JuryDashboardComponent,
   ],
   imports: [
     CommonModule,

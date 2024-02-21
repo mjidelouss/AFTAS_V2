@@ -19,6 +19,7 @@ import {AccessDeniedComponent} from "./component/access-denied/access-denied.com
 import {LockComponent} from "./component/lock/lock.component";
 import {ForbiddenComponent} from "./errors/forbidden/forbidden.component";
 import {authGuard} from "./helpers/auth.guard";
+import {MemberDashboardComponent} from "./member-dashboard/member-dashboard.component";
 
 export const Approutes: Routes = [
   {
@@ -35,6 +36,10 @@ export const Approutes: Routes = [
       {
         path: 'component',
         loadChildren: () => import('./component/component.module').then(m => m.ComponentsModule)
+      },
+      {
+        path: 'member-dashboard',
+        component: MemberDashboardComponent
       },
       {
 				path: 'level',
