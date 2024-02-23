@@ -1,7 +1,7 @@
-name: AFTAS_BACKEND
+name: aftas
 services:
   mysql:
-    container_name: mysql_db
+    container_name: mysql_aftas
     image: 'mysql:latest'
     environment:
       - 'MYSQL_DATABASE=aftas'
@@ -10,7 +10,7 @@ services:
       - '3306:3306'
 
   sonar:
-    container_name: sonarqubee
+    container_name: sonarqube_aftas
     image: sonarqube:10.3.0-community
     environment:
       - SONAR_FORCEAUTHENTICATION=false
