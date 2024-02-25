@@ -1,23 +1,23 @@
 import { Component } from '@angular/core';
-import { NgModule } from '@angular/core';
+import {AuthService} from "../../service/auth.service";
 import { FormsModule } from '@angular/forms';
-import { NgFor } from '@angular/common';
+import {NgFor, NgIf} from '@angular/common';
 import { Router } from '@angular/router';
 import { MemberService } from 'src/app/service/member.service';
 import Swal from 'sweetalert2';
+import {Subscription} from "rxjs";
 
 
 @Component({
   selector: 'app-member',
   standalone: true,
-  imports:[NgFor, FormsModule],
+  imports: [NgFor, FormsModule, NgIf],
   templateUrl: 'member.component.html'
 })
 export class MemberComponent {
   members!:any[];
   searchTerm: string = '';
-
-  constructor(private memberService: MemberService, private router:Router) {
+  constructor(private memberService: MemberService, private authService : AuthService, private router:Router) {
 
   }
 
@@ -40,6 +40,28 @@ export class MemberComponent {
     (error) => {
       console.error('Error Searching for Member', error);
     });
+  }
+
+  activateAccount(id: number) {
+    this.memberService.activateAccount(id).subscribe(
+      (response) => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Account Activated Successfully',
+          showConfirmButton: false,
+          timer: 1500
+        });
+      },
+      (error) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error Activating Account',
+          text: 'An error occurred while activating the account. Please try again.',
+          confirmButtonColor: '#d33',
+          confirmButtonText: 'OK'
+        });
+      }
+    );
   }
 
   deleteMember(id: number) {
@@ -78,7 +100,7 @@ export class MemberComponent {
   }
 
   ngOnInit() {
-    setTimeout(()=>{   
+    setTimeout(()=>{
       $('#membertables').DataTable({
        pagingType: 'full_numbers',
        pageLength: 5,

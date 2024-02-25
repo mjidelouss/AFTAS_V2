@@ -1,5 +1,4 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes } from '@angular/router';
 import { FullComponent } from './layouts/full/full.component';
 import { CompetitionDetailComponent } from './component/competition-detail/competition-detail.component';
 import { AddCompetitionComponent } from './component/add-competition/add-competition.component';
@@ -28,13 +27,15 @@ export const Approutes: Routes = [
   {
     path: '',
     component: FullComponent,
+    canActivate: [authGuard],
+    data: {roles: ['ROLE_MANAGER']},
     children: [
       { path: '', redirectTo: '/competition', pathMatch: 'full' },
       {
         path: 'competition',
         loadChildren: () => import('./competition/competition.module').then(m => m.CompetitionModule),
         canActivate: [authGuard],
-        data: {roles: ['ROLE_MANAGER', 'ROLE_JURY']}
+        data: {roles: ['ROLE_MANAGER']},
       },
       {
         path: 'component',
@@ -42,51 +43,75 @@ export const Approutes: Routes = [
       },
       {
 				path: 'level',
-				component: LevelComponent
+				component: LevelComponent,
+        canActivate: [authGuard],
+        data: {roles: ['ROLE_JURY', 'ROLE_MANAGER']},
 			},
       {
         path: 'member',
-        component: MemberComponent
+        component: MemberComponent,
+        canActivate: [authGuard],
+        data: {roles: ['ROLE_MANAGER']},
       },
       {
 				path: 'fish',
-				component: FishComponent
+				component: FishComponent,
+        canActivate: [authGuard],
+        data: {roles: ['ROLE_JURY', 'ROLE_MANAGER']},
 			},
       {
         path: 'competition-detail',
         component: CompetitionDetailComponent,
+        canActivate: [authGuard],
+        data: {roles: ['ROLE_JURY', 'ROLE_MANAGER']},
       },
       {
         path: 'add-competition',
-        component: AddCompetitionComponent
+        component: AddCompetitionComponent,
+        canActivate: [authGuard],
+        data: {roles: ['ROLE_JURY', 'ROLE_MANAGER']},
       },
       {
 				path: 'edit-competition',
-				component: EditCompetitionComponent
+				component: EditCompetitionComponent,
+        canActivate: [authGuard],
+        data: {roles: ['ROLE_JURY', 'ROLE_MANAGER']},
 			},
       {
         path: 'add-member',
-        component: AddMemberComponent
+        component: AddMemberComponent,
+        canActivate: [authGuard],
+        data: {roles: ['ROLE_MANAGER']},
       },
       {
         path: 'edit-member',
-        component: EditMemberComponent
+        component: EditMemberComponent,
+        canActivate: [authGuard],
+        data: {roles: ['ROLE_MANAGER']},
       },
       {
         path: 'member-detail',
-        component: MemberDetailsComponent
+        component: MemberDetailsComponent,
+        canActivate: [authGuard],
+        data: {roles: ['ROLE_MANAGER']},
       },
       {
 				path: 'add-level',
-				component: AddLevelComponent
+				component: AddLevelComponent,
+        canActivate: [authGuard],
+        data: {roles: ['ROLE_JURY', 'ROLE_MANAGER']},
 			},
       {
         path: 'add-fish',
-        component: AddFishComponent
+        component: AddFishComponent,
+        canActivate: [authGuard],
+        data: {roles: ['ROLE_JURY', 'ROLE_MANAGER']},
       },
       {
 				path: 'ranking',
-				component: RankComponent
+				component: RankComponent,
+        canActivate: [authGuard],
+        data: {roles: ['ROLE_JURY', 'ROLE_MANAGER', 'ROLE_MEMBER']},
 			},
     ]
   },
@@ -101,11 +126,15 @@ export const Approutes: Routes = [
       },
       {
         path: 'member-dashboard',
-        component: MemberDashboardComponent
+        component: MemberDashboardComponent,
+        canActivate: [authGuard],
+        data: {roles: ['ROLE_MEMBER']},
       },
       {
         path: 'ranking',
-        component: RankComponent
+        component: RankComponent,
+        canActivate: [authGuard],
+        data: {roles: ['ROLE_MEMBER', 'ROLE_JURY', 'ROLE_MANAGER']},
       },
     ]
   },
@@ -120,39 +149,57 @@ export const Approutes: Routes = [
       },
       {
         path: 'jury-dashboard',
-        component: JuryDashboardComponent
+        component: JuryDashboardComponent,
+        canActivate: [authGuard],
+        data: {roles: ['ROLE_JURY']},
       },
       {
         path: 'level',
-        component: LevelComponent
+        component: LevelComponent,
+        canActivate: [authGuard],
+        data: {roles: ['ROLE_JURY', 'ROLE_MANAGER']},
       },
       {
         path: 'fish',
-        component: FishComponent
+        component: FishComponent,
+        canActivate: [authGuard],
+        data: {roles: ['ROLE_JURY', 'ROLE_MANAGER']},
       },
       {
         path: 'competition-detail',
         component: CompetitionDetailComponent,
+        canActivate: [authGuard],
+        data: {roles: ['ROLE_JURY', 'ROLE_MANAGER']},
       },
       {
         path: 'add-competition',
-        component: AddCompetitionComponent
+        component: AddCompetitionComponent,
+        canActivate: [authGuard],
+        data: {roles: ['ROLE_JURY', 'ROLE_MANAGER']},
       },
       {
         path: 'edit-competition',
-        component: EditCompetitionComponent
+        component: EditCompetitionComponent,
+        canActivate: [authGuard],
+        data: {roles: ['ROLE_JURY', 'ROLE_MANAGER']},
       },
       {
         path: 'add-level',
-        component: AddLevelComponent
+        component: AddLevelComponent,
+        canActivate: [authGuard],
+        data: {roles: ['ROLE_JURY', 'ROLE_MANAGER']},
       },
       {
         path: 'add-fish',
-        component: AddFishComponent
+        component: AddFishComponent,
+        canActivate: [authGuard],
+        data: {roles: ['ROLE_JURY', 'ROLE_MANAGER']},
       },
       {
         path: 'ranking',
-        component: RankComponent
+        component: RankComponent,
+        canActivate: [authGuard],
+        data: {roles: ['ROLE_JURY', 'ROLE_MANAGER', 'ROLE_MEMBER']},
       },
     ]
   },

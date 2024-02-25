@@ -12,7 +12,13 @@ export class MemberService {
   constructor(private http: HttpClient) {}
 
   getMembers(): Observable<any> {
-    return this.http.get<any>(this.apiUrl);
+    return this.http.get<any>(this.apiUrl, { withCredentials: true });
+  }
+
+  activateAccount(id: number): Observable<any> {
+    console.log("entered");
+    const url = `http://127.0.0.1:8080/api/v1/activate/${id}`;
+    return this.http.post(url, {});
   }
 
   searchMembers(searchTerm: string): Observable<any> {

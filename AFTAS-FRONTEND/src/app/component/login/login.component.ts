@@ -22,7 +22,15 @@ export class LoginComponent implements OnInit,OnDestroy{
     this.AuthUserSub = this.authService.AuthenticatedUser$.subscribe({
       next : user => {
         if(user) {
-          this.router.navigate(['home']);
+          if (user.role.name == "ROLE_MANAGER") {
+            this.router.navigate(['competition']);
+          } else if (user.role.name == "ROLE_JURY") {
+            this.router.navigate(['jury-dashboard']);
+          } else {
+            this.router.navigate(['member-dashboard']);
+          }
+        } else {
+          console.log("user is null")
         }
       }
     })
@@ -36,8 +44,21 @@ export class LoginComponent implements OnInit,OnDestroy{
     const password = formLogin.value.password;
 
     this.authService.login(email, password).subscribe({
-      next : userData => {
-        this.router.navigate(['home']);
+      next: userData => {
+        let size: number = userData.roles.length;
+        console.log(userData)
+        const roleName = userData?.roles[size - 1];
+        if (roleName) {
+          if (roleName === 'ROLE_MEMBER') {
+            this.router.navigate(['member-dashboard']);
+          } else if (roleName === 'ROLE_MANAGER') {
+            this.router.navigate(['competition']);
+          } else {
+            this.router.navigate(['jury-dashboard']);
+          }
+        } else {
+          this.router.navigate(['lock']);
+        }
       },
       error : err => {
         this.errorMessage = err;

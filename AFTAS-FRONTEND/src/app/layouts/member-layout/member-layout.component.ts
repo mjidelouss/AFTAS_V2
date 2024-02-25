@@ -2,7 +2,7 @@ import { CommonModule } from "@angular/common";
 import { Component, OnInit, HostListener } from "@angular/core";
 import { Router, RouterModule } from "@angular/router";
 import { NgbCollapseModule } from "@ng-bootstrap/ng-bootstrap";
-import { NavigationComponent } from "src/app/shared/header/navigation.component";
+import { NavigationMemberComponent } from "../../shared/header-member/navigation-member.component";
 import { MemberSidebarComponent } from "../../shared/member-sidebar/member-sidebar.component";
 import { DataTablesModule } from 'angular-datatables';
 
@@ -10,7 +10,7 @@ import { DataTablesModule } from 'angular-datatables';
   selector: 'app-member-layout',
   standalone: true,
   templateUrl: './member-layout.component.html',
-  imports: [RouterModule, MemberSidebarComponent, NavigationComponent, CommonModule, NgbCollapseModule, DataTablesModule],
+  imports: [RouterModule, MemberSidebarComponent, NavigationMemberComponent, CommonModule, NgbCollapseModule, DataTablesModule],
   styleUrls: ['./member-layout.component.scss']
 })
 export class MemberLayoutComponent implements OnInit{

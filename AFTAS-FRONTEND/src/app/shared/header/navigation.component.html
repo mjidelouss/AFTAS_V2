@@ -10,21 +10,18 @@
   <!-- User profile and search -->
   <!-- ============================================================== -->
   <li class="nav-item" ngbDropdown placement="bottom-end">
-    <a
-      class="nav-link waves-effect waves-dark pro-pic"
-      href="javascript:void(0)"
-      data-toggle="dropdown"
-      aria-haspopup="true"
-      aria-expanded="false"
-    >
+    <div class="d-flex">
       <img
         src="assets/images/users/user1.jpg"
         alt="user"
         class="rounded-circle"
         width="31"
       />
-      <span class="ms-2">Admin</span>
-    </a>
+      <span class="ms-2 mt-2 text-white">Manager</span>
+      <form class="d-flex">
+        <button class="btn btn-outline-danger ms-2 fw-bold" type="submit" (click)="handleLogout($event)">Logout</button>
+      </form>
+    </div>
   </li>
   <!-- ============================================================== -->
   <!-- User profile and search -->

@@ -2,7 +2,7 @@ import { CommonModule } from "@angular/common";
 import { Component, OnInit, HostListener } from "@angular/core";
 import { Router, RouterModule } from "@angular/router";
 import { NgbCollapseModule } from "@ng-bootstrap/ng-bootstrap";
-import { NavigationComponent } from "src/app/shared/header/navigation.component";
+import { NavigationJuryComponent } from "../../shared/header-jury/navigation-jury.component";
 import { JurySidebarComponent } from "../../shared/jury-sidebar/jury-sidebar.component";
 import { DataTablesModule } from 'angular-datatables';
 
@@ -10,7 +10,7 @@ import { DataTablesModule } from 'angular-datatables';
   selector: 'app-jury-layout',
   standalone: true,
   templateUrl: './jury-layout.component.html',
-  imports: [RouterModule, JurySidebarComponent, NavigationComponent, CommonModule, NgbCollapseModule, DataTablesModule],
+  imports: [RouterModule, JurySidebarComponent, NavigationJuryComponent, CommonModule, NgbCollapseModule, DataTablesModule],
   styleUrls: ['./jury-layout.component.scss']
 })
 export class JuryLayoutComponent implements OnInit{

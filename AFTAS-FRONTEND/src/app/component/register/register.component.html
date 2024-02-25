@@ -13,46 +13,80 @@
               <div class="row">
                 <div class="col-md-6 mb-4">
                   <div class="form-outline">
-                    <input type="text" class="form-control" id="firstname" placeholder="First Name" ngModel #firstname="ngModel" name="firstname" required />
+                    <label class="form-label mt-1" for="firstname">First name</label>
+                    <input type="text" class="form-control border border-dark border-2" id="firstname" placeholder="First Name" ngModel #firstname="ngModel" name="firstname" required />
                     <div *ngIf="firstname.errors && formRegister.submitted" class="text-danger">
                       First Name is required!
                     </div>
-                    <label class="form-label mt-1" for="firstname">First name</label>
                   </div>
                 </div>
                 <div class="col-md-6 mb-4">
                   <div class="form-outline">
-                    <input type="text" class="form-control" id="lastname" placeholder="Last Name" ngModel #lastname="ngModel" name="lastname" required/>
+                    <label class="form-label mt-1" for="lastname">Last name</label>
+                    <input type="text" class="form-control border border-dark border-2" id="lastname" placeholder="Last Name" ngModel #lastname="ngModel" name="lastname" required/>
                     <div *ngIf="lastname.errors && formRegister.submitted" class="text-danger">
                       Last Name is required!
                     </div>
-                    <label class="form-label mt-1" for="lastname">Last name</label>
                   </div>
                 </div>
               </div>
 
-              <!-- Email input -->
-              <div class="form-outline mb-4">
-                <input type="email" class="form-control" id="email" placeholder="Email Address" ngModel #email="ngModel" name="email" required />
-                <div *ngIf="email.errors && formRegister.submitted" class="text-danger">
-                  Email is required!
+              <div class="row">
+                <!-- Identity Number -->
+                <div class="col-md-6 mb-3">
+                  <label for="identityNumber" class="form-label">Identity Number</label>
+                  <input type="text" class="form-control border border-dark border-2" id="identityNumber" ngModel #identityNumber="ngModel" name="identityNumber" required>
+                  <div *ngIf="identityNumber.errors && formRegister.submitted" class="text-danger">
+                    IdentityNumber is required!
+                  </div>
                 </div>
-                <label class="form-label mt-1" for="email">Email address</label>
+
+                <!-- Identity Document Type -->
+                <div class="col-md-6 mb-3">
+                  <label for="identityDocumentType" class="form-label">Identity Document Type</label>
+                  <select class="form-select border border-dark border-2" id="identityDocumentType" ngModel #identityDocumentType="ngModel" name="identityDocumentType" required>
+                    <option *ngFor="let docType of identityDocumentTypes" [value]="docType">{{ docType }}</option>
+                  </select>
+                  <div *ngIf="identityDocumentType.errors && formRegister.submitted" class="text-danger">
+                    Identity Document Type is required!
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="nationality" class="form-label">Nationality</label>
+                  <input type="text" class="form-control border border-dark border-2" id="nationality" ngModel #nationality="ngModel" name="nationality" required>
+                  <div *ngIf="nationality.errors && formRegister.submitted" class="text-danger">
+                    Nationality is required!
+                  </div>
+                </div>
+
+                <!-- Email input -->
+                <div class="col-md-6 mb-3">
+                  <label class="form-label mt-1" for="email">Email address</label>
+                  <input type="email" class="form-control border border-dark border-2" id="email" placeholder="Email Address" ngModel #email="ngModel" name="email" required />
+                  <div *ngIf="email.errors && formRegister.submitted" class="text-danger">
+                    Email is required!
+                  </div>
+                </div>
               </div>
 
               <!-- Password input -->
-              <div class="form-outline mb-4">
-                <input type="password" class="form-control" id="password" placeholder="Password" ngModel #password="ngModel" name="password" required minlength="6" />
+              <div class="container">
+                <div class="row justify-content-center">
+              <div class="col-md-6 mb-3">
+                <label class="form-label mt-1" for="password">Password</label>
+                <input type="password" class="form-control border border-dark border-2" id="password" placeholder="Password" ngModel #password="ngModel" name="password" required minlength="6" />
                 <div *ngIf="password.errors && formRegister.submitted" class="text-danger">
                   <div *ngIf="password.errors['required']">Password is required</div>
                   <div *ngIf="password.errors['minlength']">
                     Password must be at least 6 characters
                   </div>
-                <label class="form-label mt-1" for="password">Password</label>
               </div>
 
               <!-- Checkbox -->
-              <div class="form-check d-flex justify-content-center mb-4">
+              <div class="form-check d-flex justify-content-center mb-3 mt-2">
                 <input class="form-check-input me-2" type="checkbox" value="" id="form2Example33" checked />
                 <label class="form-check-label" for="form2Example33">
                   Subscribe to our newsletter
@@ -67,6 +101,8 @@
               <div class="text-center">
                 <a routerLink="/login" class="fs-4 text-black-50">Already have an account? <span class="text-primary fw-bold ms-1">Login</span></a>
               </div>
+              </div>
+                </div>
               </div>
             </form>
           </div>

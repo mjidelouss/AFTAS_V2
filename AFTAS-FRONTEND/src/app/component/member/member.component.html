@@ -7,7 +7,6 @@
               <h4 class="card-title">Members</h4>
               <h5 class="card-subtitle text-muted">Overview of the Members</h5>
           </div>
-          <div class="mt-1"><button class="btn btn-primary" (click)="goToAddMember()">Add Member</button></div>
       </div>
       <div class="container mt-4">
         <div class="row justify-content-center">
@@ -49,7 +48,7 @@
                       <td>
                         <h5 class="fs-4">{{ member.nationality }}</h5>
                       </td>
-                      
+
                       <td>
                           <h5 class="mb-0 fw-normal">{{ member.identityNumber }}</h5>
                       </td>
@@ -60,8 +59,9 @@
                         <button type="submit" class="btn btn-info opacity-75" (click)="viewMember(member)">View</button>
                         <button type="submit" class="btn btn-success ms-1" (click)="editMember(member)">Edit</button>
                         <button type="submit" class="btn btn-danger ms-1" (click)="deleteMember(member.id)">Delete</button>
-                    </td>
-                  </tr>              
+                        <button *ngIf="!member.active" type="submit" class="btn btn-primary ms-1" (click)="activateAccount(member.id)">Activate</button>
+                      </td>
+                  </tr>
               </tbody>
           </table>
       </div>

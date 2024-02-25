@@ -9,6 +9,8 @@ export interface AuthResponseData {
   id : number,
   email : string,
   roles : string[],
+  access_token: string,
+  refresh_token: string
 }
 
 @Injectable({
@@ -25,10 +27,10 @@ export class AuthService {
     private router: Router
   ) { }
 
-  register(firstname: string, lastname: string, email: string, password: string, role: string) {
+  register(firstname: string, lastname: string, email: string, password: string, identityNumber: string, identityDocumentType: string, nationality: string) {
     return this.http.request<AuthResponseData>('post', 'http://localhost:8080/api/v1/auth/register',
       {
-        body: { firstname, lastname, email, password, role },
+        body: { firstname, lastname, email, password, identityNumber, identityDocumentType, nationality },
         withCredentials: true
       }).pipe(
       catchError(err => {
@@ -42,8 +44,8 @@ export class AuthService {
             email: user.email,
             id: user.id,
             role : {
-              name : user.roles.find(role => role.includes('ROLE')) || '',
-              permissions : user.roles.filter(permission => !permission.includes('ROLE'))
+              name : '',
+              permissions : ['']
             }
           }
           this.storageService.saveUser(extractedUser);
@@ -69,6 +71,8 @@ export class AuthService {
       }),
       tap(
         user => {
+          const accessToken = user.access_token;
+          const refreshToken = user.refresh_token;
           const extractedUser : User = {
             email: user.email,
             id: user.id,
@@ -78,6 +82,7 @@ export class AuthService {
             }
           }
           this.storageService.saveUser(extractedUser);
+          this.storageService.saveJwtToken(accessToken, refreshToken);
           this.AuthenticatedUser$.next(extractedUser);
         }
       )
@@ -93,9 +98,8 @@ export class AuthService {
   }
 
   logout(){
-    this.http.request('post','http://localhost:8080/api/v1/auth/logout',{
-      withCredentials: true
-    }).subscribe({
+    console.log("LOGOUT")
+    this.http.request('post','http://localhost:8080/api/v1/auth/logout').subscribe({
       next: () => {
         this.storageService.clean();
         this.AuthenticatedUser$.next(null);
@@ -106,9 +110,7 @@ export class AuthService {
   }
 
   refreshToken(){
-    return this.http.request('post', 'http://localhost:8080/api/v1/auth/refresh-token-cookie', {
-      withCredentials: true
-    })
+    return this.http.request('post', 'http://localhost:8080/api/v1/auth/refresh-token')
   }
 
 }

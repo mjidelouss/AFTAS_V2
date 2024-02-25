@@ -35,6 +35,7 @@ import { MemberSidebarComponent } from './shared/member-sidebar/member-sidebar.c
 import { JurySidebarComponent } from './shared/jury-sidebar/jury-sidebar.component';
 import { MemberLayoutComponent } from './layouts/member-layout/member-layout.component';
 import { JuryLayoutComponent } from './layouts/jury-layout/jury-layout.component';
+import {JwtInterceptor} from "./helpers/jwt.interceptor";
 
 
 @NgModule({
@@ -69,6 +70,7 @@ import { JuryLayoutComponent } from './layouts/jury-layout/jury-layout.component
     MatIconModule,
   ],
   providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptor, multi: true },
     MemberService,
     {
