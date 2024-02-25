@@ -1,12 +1,13 @@
 import { RouteInfo } from './sidebar.metadata';
 
 export const ROUTES: RouteInfo[] = [
- 
+
   {
     path: '/competition',
     title: 'Competitions',
     icon: '🎯',
     class: '',
+    requiredRole: 'ROLE_MEMBER',
     extralink: false,
     submenu: []
   },
@@ -16,6 +17,7 @@ export const ROUTES: RouteInfo[] = [
     icon: '🧜🏻‍♂️',
     class: '',
     extralink: false,
+    requiredRole: '',
     submenu: []
   },
   {
@@ -23,6 +25,7 @@ export const ROUTES: RouteInfo[] = [
     title: 'Fishes',
     icon: '🐟',
     class: '',
+    requiredRole: '',
     extralink: false,
     submenu: []
   },
@@ -31,6 +34,7 @@ export const ROUTES: RouteInfo[] = [
     title: 'Levels',
     icon: '⭐',
     class: '',
+    requiredRole: '',
     extralink: false,
     submenu: []
   },
@@ -40,6 +44,7 @@ export const ROUTES: RouteInfo[] = [
     icon: '👥',
     class: '',
     extralink: false,
+    requiredRole: 'ROLE_MANAGER',
     submenu: []
   },
   {
@@ -48,6 +53,7 @@ export const ROUTES: RouteInfo[] = [
     icon: '➕',
     class: '',
     extralink: false,
+    requiredRole: '',
     submenu: []
   },
   {
@@ -56,6 +62,7 @@ export const ROUTES: RouteInfo[] = [
     icon: '🏆',
     class: '',
     extralink: false,
+    requiredRole: 'ROLE_MEMBER',
     submenu: []
   },
 ];

@@ -27,15 +27,11 @@ export const Approutes: Routes = [
   {
     path: '',
     component: FullComponent,
-    canActivate: [authGuard],
-    data: {roles: ['ROLE_MANAGER']},
     children: [
       { path: '', redirectTo: '/competition', pathMatch: 'full' },
       {
         path: 'competition',
         loadChildren: () => import('./competition/competition.module').then(m => m.CompetitionModule),
-        canActivate: [authGuard],
-        data: {roles: ['ROLE_MANAGER']},
       },
       {
         path: 'component',

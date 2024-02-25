@@ -36,6 +36,7 @@ import { JurySidebarComponent } from './shared/jury-sidebar/jury-sidebar.compone
 import { MemberLayoutComponent } from './layouts/member-layout/member-layout.component';
 import { JuryLayoutComponent } from './layouts/jury-layout/jury-layout.component';
 import {JwtInterceptor} from "./helpers/jwt.interceptor";
+import {MatPaginatorModule} from "@angular/material/paginator";
 
 
 @NgModule({
@@ -68,6 +69,7 @@ import {JwtInterceptor} from "./helpers/jwt.interceptor";
     JurySidebarComponent,
     NavigationComponent,
     MatIconModule,
+    MatPaginatorModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

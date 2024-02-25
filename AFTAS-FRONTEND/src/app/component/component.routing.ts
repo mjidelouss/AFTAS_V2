@@ -14,6 +14,7 @@ import { MemberDetailsComponent } from './member-details/member-details.componen
 import { AddLevelComponent } from './add-level/add-level.component';
 import { AddFishComponent } from './add-fish/add-fish.component';
 import { RankComponent } from './rank/rank.component';
+import {authGuard} from "../helpers/auth.guard";
 export const ComponentsRoutes: Routes = [
 	{
 		path: '',
@@ -21,63 +22,93 @@ export const ComponentsRoutes: Routes = [
 			{
 				path: 'podium',
 				component: PodiumComponent,
-			},
-			{
-				path: 'member',
-				component: MemberComponent,
+        canActivate: [authGuard],
+        data: {roles: ['ROLE_JURY', 'ROLE_MANAGER', 'ROLE_MEMBER']},
 			},
 			{
 				path: 'hunt',
 				component: HuntComponent,
-			},
-			{
-				path: 'fish',
-				component: FishComponent,
-			},
-			{
-				path: 'level',
-				component: LevelComponent
+        canActivate: [authGuard],
+        data: {roles: ['ROLE_JURY', 'ROLE_MANAGER']},
 			},
 			{
 				path: 'register-competition',
 				component: RegisterCompetitionComponent,
+        canActivate: [authGuard],
+        data: {roles: ['ROLE_JURY', 'ROLE_MANAGER']},
 			},
-			{
-				path: 'competition-detail',
-				component: CompetitionDetailComponent,
-			},
-			{
-				path: 'add-competition',
-				component: AddCompetitionComponent,
-			},
-			{
-				path: 'edit-competition',
-				component: EditCompetitionComponent,
-			},
-			{
-				path: 'add-member',
-				component: AddMemberComponent,
-			},
-			{
-				path: 'edit-member',
-				component: EditMemberComponent,
-			},
-			{
-				path: 'member-detail',
-				component: MemberDetailsComponent,
-			},
-			{
-				path: 'add-level',
-				component: AddLevelComponent,
-			},
-			{
-				path: 'add-fish',
-				component: AddFishComponent,
-			},
-			{
-				path: 'ranking',
-				component: RankComponent
-			}
+      {
+        path: 'member',
+        component: MemberComponent,
+        canActivate: [authGuard],
+        data: {roles: ['ROLE_MANAGER']},
+      },
+      {
+        path: 'add-member',
+        component: AddMemberComponent,
+        canActivate: [authGuard],
+        data: {roles: ['ROLE_MANAGER']},
+      },
+      {
+        path: 'edit-member',
+        component: EditMemberComponent,
+        canActivate: [authGuard],
+        data: {roles: ['ROLE_MANAGER']},
+      },
+      {
+        path: 'member-detail',
+        component: MemberDetailsComponent,
+        canActivate: [authGuard],
+        data: {roles: ['ROLE_MANAGER']},
+      },
+      {
+        path: 'level',
+        component: LevelComponent,
+        canActivate: [authGuard],
+        data: {roles: ['ROLE_JURY', 'ROLE_MANAGER']},
+      },
+      {
+        path: 'fish',
+        component: FishComponent,
+        canActivate: [authGuard],
+        data: {roles: ['ROLE_JURY', 'ROLE_MANAGER']},
+      },
+      {
+        path: 'competition-detail',
+        component: CompetitionDetailComponent,
+        canActivate: [authGuard],
+        data: {roles: ['ROLE_JURY', 'ROLE_MANAGER']},
+      },
+      {
+        path: 'add-competition',
+        component: AddCompetitionComponent,
+        canActivate: [authGuard],
+        data: {roles: ['ROLE_JURY', 'ROLE_MANAGER']},
+      },
+      {
+        path: 'edit-competition',
+        component: EditCompetitionComponent,
+        canActivate: [authGuard],
+        data: {roles: ['ROLE_JURY', 'ROLE_MANAGER']},
+      },
+      {
+        path: 'add-level',
+        component: AddLevelComponent,
+        canActivate: [authGuard],
+        data: {roles: ['ROLE_JURY', 'ROLE_MANAGER']},
+      },
+      {
+        path: 'add-fish',
+        component: AddFishComponent,
+        canActivate: [authGuard],
+        data: {roles: ['ROLE_JURY', 'ROLE_MANAGER']},
+      },
+      {
+        path: 'ranking',
+        component: RankComponent,
+        canActivate: [authGuard],
+        data: {roles: ['ROLE_JURY', 'ROLE_MANAGER', 'ROLE_MEMBER']},
+      },
 		]
 	}
 ];

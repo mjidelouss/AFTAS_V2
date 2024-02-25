@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: 1708683266451-1
+      id: 1708883612157-1
       author: lordo (generated)
       objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
       changes:
@@ -31,7 +31,7 @@ databaseChangeLog:
                   type: VARCHAR(255)
             tableName: app_user
   - changeSet:
-      id: 1708683266451-2
+      id: 1708883612157-2
       author: lordo (generated)
       objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
       changes:
@@ -85,7 +85,7 @@ databaseChangeLog:
                   type: VARCHAR(255)
             tableName: competition
   - changeSet:
-      id: 1708683266451-3
+      id: 1708883612157-3
       author: lordo (generated)
       objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
       changes:
@@ -116,7 +116,7 @@ databaseChangeLog:
                   type: BIGINT
             tableName: fish
   - changeSet:
-      id: 1708683266451-4
+      id: 1708883612157-4
       author: lordo (generated)
       objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
       changes:
@@ -152,7 +152,7 @@ databaseChangeLog:
                   type: BIGINT
             tableName: hunt
   - changeSet:
-      id: 1708683266451-5
+      id: 1708883612157-5
       author: lordo (generated)
       objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
       changes:
@@ -179,7 +179,7 @@ databaseChangeLog:
                   type: INT
             tableName: level
   - changeSet:
-      id: 1708683266451-6
+      id: 1708883612157-6
       author: lordo (generated)
       objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
       changes:
@@ -221,7 +221,7 @@ databaseChangeLog:
                   type: VARCHAR(255)
             tableName: member
   - changeSet:
-      id: 1708683266451-7
+      id: 1708883612157-7
       author: lordo (generated)
       objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
       changes:
@@ -243,19 +243,19 @@ databaseChangeLog:
                   constraints:
                     nullable: false
                     primaryKey: true
-                    primaryKeyName: pk_rank
+                    primaryKeyName: pk_ranking
                   name: member_id
                   type: BIGINT
               - column:
                   constraints:
                     nullable: false
                     primaryKey: true
-                    primaryKeyName: pk_rank
+                    primaryKeyName: pk_ranking
                   name: competition_id
                   type: BIGINT
-            tableName: rank
+            tableName: ranking
   - changeSet:
-      id: 1708683266451-8
+      id: 1708883612157-8
       author: lordo (generated)
       objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
       changes:
@@ -289,7 +289,7 @@ databaseChangeLog:
                   type: BOOLEAN
             tableName: refresh_token
   - changeSet:
-      id: 1708683266451-9
+      id: 1708883612157-9
       author: lordo (generated)
       objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
       changes:
@@ -298,7 +298,7 @@ databaseChangeLog:
             constraintName: uc_competition_code
             tableName: competition
   - changeSet:
-      id: 1708683266451-10
+      id: 1708883612157-10
       author: lordo (generated)
       objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
       changes:
@@ -307,7 +307,7 @@ databaseChangeLog:
             constraintName: uc_competition_date
             tableName: competition
   - changeSet:
-      id: 1708683266451-11
+      id: 1708883612157-11
       author: lordo (generated)
       objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
       changes:
@@ -316,7 +316,7 @@ databaseChangeLog:
             constraintName: uc_fish_name
             tableName: fish
   - changeSet:
-      id: 1708683266451-12
+      id: 1708883612157-12
       author: lordo (generated)
       objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
       changes:
@@ -325,7 +325,7 @@ databaseChangeLog:
             constraintName: uc_level_level
             tableName: level
   - changeSet:
-      id: 1708683266451-13
+      id: 1708883612157-13
       author: lordo (generated)
       objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
       changes:
@@ -334,7 +334,7 @@ databaseChangeLog:
             constraintName: uc_level_points
             tableName: level
   - changeSet:
-      id: 1708683266451-14
+      id: 1708883612157-14
       author: lordo (generated)
       objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
       changes:
@@ -343,7 +343,7 @@ databaseChangeLog:
             constraintName: uc_refreshtoken_token
             tableName: refresh_token
   - changeSet:
-      id: 1708683266451-15
+      id: 1708883612157-15
       author: lordo (generated)
       objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
       changes:
@@ -354,7 +354,7 @@ databaseChangeLog:
             referencedColumnNames: id
             referencedTableName: level
   - changeSet:
-      id: 1708683266451-16
+      id: 1708883612157-16
       author: lordo (generated)
       objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
       changes:
@@ -365,7 +365,7 @@ databaseChangeLog:
             referencedColumnNames: id
             referencedTableName: competition
   - changeSet:
-      id: 1708683266451-17
+      id: 1708883612157-17
       author: lordo (generated)
       objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
       changes:
@@ -376,7 +376,7 @@ databaseChangeLog:
             referencedColumnNames: id
             referencedTableName: fish
   - changeSet:
-      id: 1708683266451-18
+      id: 1708883612157-18
       author: lordo (generated)
       objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
       changes:
@@ -387,29 +387,29 @@ databaseChangeLog:
             referencedColumnNames: id
             referencedTableName: member
   - changeSet:
-      id: 1708683266451-19
+      id: 1708883612157-19
       author: lordo (generated)
       objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: competition_id
-            baseTableName: rank
-            constraintName: FK_RANK_ON_COMPETITION
+            baseTableName: ranking
+            constraintName: FK_RANKING_ON_COMPETITION
             referencedColumnNames: id
             referencedTableName: competition
   - changeSet:
-      id: 1708683266451-20
+      id: 1708883612157-20
       author: lordo (generated)
       objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
       changes:
         - addForeignKeyConstraint:
             baseColumnNames: member_id
-            baseTableName: rank
-            constraintName: FK_RANK_ON_MEMBER
+            baseTableName: ranking
+            constraintName: FK_RANKING_ON_MEMBER
             referencedColumnNames: id
             referencedTableName: member
   - changeSet:
-      id: 1708683266451-21
+      id: 1708883612157-21
       author: lordo (generated)
       objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
       changes:

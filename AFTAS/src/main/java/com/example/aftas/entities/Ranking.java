@@ -11,9 +11,9 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 @Builder
-public class Rank {
+public class Ranking {
 
-    public Rank() {
+    public Ranking() {
         this.id = new RankId();
     }
 

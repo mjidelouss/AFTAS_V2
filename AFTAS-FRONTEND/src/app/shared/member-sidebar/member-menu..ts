@@ -7,6 +7,7 @@ export const MEMBER_ROUTES: RouteInfo[] = [
     title: 'Competitions',
     icon: '🎯',
     class: '',
+    requiredRole: '',
     extralink: false,
     submenu: []
   },
@@ -15,6 +16,7 @@ export const MEMBER_ROUTES: RouteInfo[] = [
     title: 'Podium',
     icon: '🏆',
     class: '',
+    requiredRole: '',
     extralink: false,
     submenu: []
   },

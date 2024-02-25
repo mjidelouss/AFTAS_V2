@@ -6,4 +6,5 @@ export interface RouteInfo {
   class: string;
   extralink: boolean;
   submenu: RouteInfo[];
+  requiredRole: string;
 }

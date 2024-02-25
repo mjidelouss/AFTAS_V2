@@ -3,23 +3,41 @@ import { Router } from '@angular/router';
 import { CompetitionService } from '../service/competition.service';
 import { PageEvent } from '@angular/material/paginator';
 import Swal from 'sweetalert2';
+import {Subscription} from "rxjs";
+import {AuthService} from "../service/auth.service";
 
 @Component({
   templateUrl: './competition.component.html'
 })
 export class CompetitionComponent {
-  
+
   competitions: any[] = [];
   selectedStatus: string = '';
   pageSizeOptions: number[] = [5, 10, 20];
   pageSize: number = 5;
   pageIndex: number = 0;
   totalCompetitions: number = 0;
+  AuthUserSub! : Subscription;
 
-  constructor(private competitionService: CompetitionService, private router: Router) {}
+  constructor(private competitionService: CompetitionService, private router: Router, private authService : AuthService,) {}
 
   ngOnInit() {
     this.getCompetitions();
+    this.AuthUserSub = this.authService.AuthenticatedUser$.subscribe({
+      next : user => {
+        if(user) {
+          if (user.role.name == "ROLE_MANAGER") {
+            this.router.navigate(['competition']);
+          } else if (user.role.name == "ROLE_JURY") {
+            this.router.navigate(['jury-dashboard']);
+          } else {
+            this.router.navigate(['member-dashboard']);
+          }
+        } else {
+          console.log("user is null")
+        }
+      }
+    })
   }
 
   getCompetitions() {

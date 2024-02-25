@@ -16,7 +16,6 @@ export class MemberService {
   }
 
   activateAccount(id: number): Observable<any> {
-    console.log("entered");
     const url = `http://127.0.0.1:8080/api/v1/activate/${id}`;
     return this.http.post(url, {});
   }

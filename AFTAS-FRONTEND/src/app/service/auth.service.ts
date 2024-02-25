@@ -109,8 +109,10 @@ export class AuthService {
 
   }
 
-  refreshToken(){
-    return this.http.request('post', 'http://localhost:8080/api/v1/auth/refresh-token')
+  refreshToken() {
+    const refreshToken = localStorage.getItem("refresh-token");
+    return this.http.post('http://localhost:8080/api/v1/auth/refresh-token', refreshToken);
   }
+
 
 }
