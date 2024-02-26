@@ -38,20 +38,6 @@ export class AuthService {
         let errorMessage = 'An unknown error occurred!';
         return throwError(() => new Error(errorMessage))
       }),
-      tap(
-        user => {
-          const extractedUser : User = {
-            email: user.email,
-            id: user.id,
-            role : {
-              name : '',
-              permissions : ['']
-            }
-          }
-          this.storageService.saveUser(extractedUser);
-          this.AuthenticatedUser$.next(extractedUser);
-        }
-      )
     );
   }
 
