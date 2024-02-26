@@ -57,7 +57,7 @@ public class Competition {
     @Column(nullable = true)
     @JsonIgnore
     @ToString.Exclude
-    private List<Rank> ranks;
+    private List<Ranking> rankings;
 
     public Competition(String code, LocalDate date, LocalTime startTime, LocalTime endTime, Integer totalParticipants, String location, Double amount, CompetitionStatus status) {
         this.code = code;

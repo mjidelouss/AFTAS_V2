@@ -14,8 +14,6 @@ public interface RefreshTokenService {
     RefreshToken verifyExpiration(RefreshToken token);
     Optional<RefreshToken> findByToken(String token);
     RefreshTokenResponse generateNewToken(RefreshTokenRequest request);
-    ResponseCookie generateRefreshTokenCookie(String token);
-    String getRefreshTokenFromCookies(HttpServletRequest request);
+    String getRefreshTokenFromLocalStorage(HttpServletRequest request);
     void deleteByToken(String token);
-    ResponseCookie getCleanRefreshTokenCookie();
 }

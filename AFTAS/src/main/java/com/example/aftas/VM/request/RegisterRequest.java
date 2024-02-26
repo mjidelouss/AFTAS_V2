@@ -2,8 +2,6 @@ package com.example.aftas.VM.request;
 
 import com.example.aftas.Validation.StrongPassword;
 import com.example.aftas.enums.IdentityDocumentType;
-import com.example.aftas.enums.Role;
-import jakarta.persistence.Column;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.*;

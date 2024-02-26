@@ -3,7 +3,6 @@ package com.example.aftas.entities;
 import com.example.aftas.enums.IdentityDocumentType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
 import lombok.*;
 import java.time.LocalDate;
 import java.util.List;
@@ -28,6 +27,8 @@ public class Member {
 
     private String nationality;
 
+    private boolean active;
+
     @Enumerated(EnumType.STRING)
     private IdentityDocumentType identityDocumentType;
 
@@ -37,7 +38,7 @@ public class Member {
     @Column(nullable = true)
     @JsonIgnore
     @ToString.Exclude
-    private List<Rank> ranks;
+    private List<Ranking> rankings;
 
     @OneToMany(mappedBy = "member")
     @JsonIgnore

@@ -1,13 +1,13 @@
 package com.example.aftas.mappers;
 
 import com.example.aftas.Dtos.request.RankRequest;
-import com.example.aftas.entities.Rank;
+import com.example.aftas.entities.Ranking;
 import com.example.aftas.entities.RankId;
 
 public class RankMapper {
 
-    public static Rank mapRankRequestToRank(RankRequest rankRequest) {
-        return  Rank.builder()
+    public static Ranking mapRankRequestToRank(RankRequest rankRequest) {
+        return  Ranking.builder()
                 .id(RankId.builder()
                         .competitionId(rankRequest.getCompetition().getId())
                         .memberId(rankRequest.getMember().getId())

@@ -50,6 +50,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 .identityDocumentType(request.getIdentityDocumentType())
                 .accessDate(LocalDate.now())
                 .membershipNumber(generateUniqueMembershipNumber())
+                .active(false)
                 .build();
         user = userRepository.save(user);
         memberService.addMember(member);

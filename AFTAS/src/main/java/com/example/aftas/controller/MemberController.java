@@ -21,7 +21,7 @@ public class MemberController {
     private final MemberService memberService;
 
     @GetMapping("/all")
-    //@PreAuthorize("hasAuthority('READ_PRIVILEGE') and hasRole('MANAGER')")
+    @PreAuthorize("hasAuthority('READ_PRIVILEGE') and hasRole('MANAGER')")
     public ResponseEntity getMembers() {
         List<Member> members = memberService.getMembers();
         if (members.isEmpty()) {

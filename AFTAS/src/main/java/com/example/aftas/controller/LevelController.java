@@ -21,7 +21,7 @@ public class LevelController {
     private final LevelService levelService;
 
     @GetMapping("")
-    @PreAuthorize("hasAuthority('READ_PRIVILEGE') and hasAnyRole('MANAGER', 'JURY')")
+    @PreAuthorize("hasAuthority('WRITE_PRIVILEGE') and (hasRole('MANAGER') or hasRole('JURY'))")
     public ResponseEntity getLevels() {
         List<Level> levels = levelService.getLevels();
         if (levels.isEmpty()) {
@@ -32,7 +32,7 @@ public class LevelController {
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAuthority('READ_PRIVILEGE') and hasAnyRole('MANAGER', 'JURY')")
+    @PreAuthorize("hasAuthority('WRITE_PRIVILEGE') and (hasRole('MANAGER') or hasRole('JURY'))")
     public ResponseEntity getLevelById(@PathVariable Long id) {
         Level level = levelService.getLevelById(id);
         if (level == null) {
@@ -43,7 +43,7 @@ public class LevelController {
     }
 
     @PostMapping("")
-    @PreAuthorize("hasAuthority('WRITE_PRIVILEGE') and hasAnyRole('MANAGER', 'JURY')")
+    @PreAuthorize("hasAuthority('WRITE_PRIVILEGE') and (hasRole('MANAGER') or hasRole('JURY'))")
     public ResponseEntity addLevel(@RequestBody @Valid LevelRequest levelRequest) {
         Level level = LevelMapper.mapLevelRequestToMapper(levelRequest);
         Level level1 = levelService.addLevel(level);
@@ -55,7 +55,7 @@ public class LevelController {
     }
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasAuthority('UPDATE_PRIVILEGE') and hasAnyRole('MANAGER', 'JURY')")
+    @PreAuthorize("hasAuthority('UPDATE_PRIVILEGE') and (hasRole('MANAGER') or hasRole('JURY'))")
     public ResponseEntity updateLevel(@RequestBody @Valid LevelRequest levelRequest, @PathVariable Long id) {
         Level level = LevelMapper.mapLevelRequestToMapper(levelRequest);
         Level level1 = levelService.updateLevel(level, id);
@@ -66,7 +66,7 @@ public class LevelController {
         }
     }
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAuthority('DELETE_PRIVILEGE') and hasAnyRole('MANAGER', 'JURY')")
+    @PreAuthorize("hasAuthority('DELETE_PRIVILEGE') and (hasRole('MANAGER') or hasRole('JURY'))")
     public ResponseEntity deleteLevel(@PathVariable Long id) {
         Level level = levelService.getLevelById(id);
         if (level == null) {

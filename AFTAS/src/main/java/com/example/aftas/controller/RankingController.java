@@ -4,7 +4,7 @@ import com.example.aftas.Dtos.request.RankRequest;
 import com.example.aftas.Dtos.request.RegisterRequest;
 import com.example.aftas.entities.Competition;
 import com.example.aftas.entities.Member;
-import com.example.aftas.entities.Rank;
+import com.example.aftas.entities.Ranking;
 import com.example.aftas.mappers.RankMapper;
 import com.example.aftas.response.ResponseMessage;
 import com.example.aftas.service.CompetitionService;
@@ -28,30 +28,30 @@ public class RankingController {
     private final MemberService memberService;
 
     @GetMapping("")
-    @PreAuthorize("hasAuthority('READ_PRIVILEGE') and hasAnyRole('MANAGER', 'JURY', 'USER')")
+    @PreAuthorize("hasAuthority('READ_PRIVILEGE') and (hasRole('MANAGER') or hasRole('JURY') or hasRole('MEMBER'))")
     public ResponseEntity getRankings() {
-        List<Rank> ranks = rankingService.getRankings();
-        if (ranks.isEmpty()) {
+        List<Ranking> rankings = rankingService.getRankings();
+        if (rankings.isEmpty()) {
             return ResponseMessage.notFound("Rankings Not Found");
         } else {
-            return ResponseMessage.ok("Success", ranks);
+            return ResponseMessage.ok("Success", rankings);
         }
     }
 
     @PostMapping("")
-    @PreAuthorize("hasAuthority('WRITE_PRIVILEGE') and hasAnyRole('MANAGER', 'JURY')")
+    @PreAuthorize("hasAuthority('WRITE_PRIVILEGE') and (hasRole('MANAGER') or hasRole('JURY'))")
     public ResponseEntity addRanking(@RequestBody @Valid RankRequest rankRequest) {
-        Rank rank = RankMapper.mapRankRequestToRank(rankRequest);
-        Rank rank1 = rankingService.addRanking(rank);
-        if(rank1 == null) {
+        Ranking ranking = RankMapper.mapRankRequestToRank(rankRequest);
+        Ranking ranking1 = rankingService.addRanking(ranking);
+        if(ranking1 == null) {
             return ResponseMessage.badRequest("Failed To Create Ranking");
         } else {
-            return ResponseMessage.created("Ranking Created Successfully", rank1);
+            return ResponseMessage.created("Ranking Created Successfully", ranking1);
         }
     }
 
     @PostMapping("/register")
-    @PreAuthorize("hasAuthority('WRITE_PRIVILEGE') and hasAnyRole('MANAGER', 'JURY')")
+    @PreAuthorize("hasAuthority('WRITE_PRIVILEGE') and (hasRole('MANAGER') or hasRole('JURY'))")
     public ResponseEntity registerMemberToComeptition(@RequestBody @Valid RegisterRequest registerRequest) {
         Competition competition = competitionService.getCompetitionByCode(registerRequest.getCompetitionCode());
         Member member = memberService.getMemberByMembershipNumber(registerRequest.getMembershipNumber());
@@ -70,15 +70,15 @@ public class RankingController {
     }
 
     @PostMapping("/podium")
-    @PreAuthorize("hasAuthority('WRITE_PRIVILEGE') and hasAnyRole('MANAGER', 'JURY', 'USER')")
+    @PreAuthorize("hasAuthority('READ_PRIVILEGE') and (hasRole('MANAGER') or hasRole('JURY') or hasRole('MEMBER'))")
     public ResponseEntity getPodium(@RequestBody @Valid PodiumRequest podiumRequest) {
         Competition competition = competitionService.getCompetitionByCode(podiumRequest.getCode());
         rankingService.updateRankingOrder(competition);
-        List<Rank> ranks = rankingService.getPodium(competition);
-        if (ranks.isEmpty()) {
+        List<Ranking> rankings = rankingService.getPodium(competition);
+        if (rankings.isEmpty()) {
             return ResponseMessage.notFound("Ranks Not Found");
         } else {
-            return ResponseMessage.ok("Top 3 Fetched Successfully", ranks);
+            return ResponseMessage.ok("Top 3 Fetched Successfully", rankings);
         }
     }
 }
